@@ -17,4 +17,10 @@
    <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
    </listener>
+   <listener>
+   		<listener-class>com.hyc.listener.newsGetTimer</listener-class>
+   </listener>
+   <listener>
+   		<listener-class>com.hyc.listener.newsDeleteTimer</listener-class>
+   </listener>
 </web-app>
