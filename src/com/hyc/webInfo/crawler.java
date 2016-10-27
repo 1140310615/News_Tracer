@@ -148,11 +148,16 @@ public class crawler
 			{
 				Node node = nodelist.elementAt(i);
 				String str = node.toPlainTextString();
-				if ((str.indexOf("(")!=-1 || str.indexOf("（")!=-1) && str.trim().length() <= 5 )
+				char s = 12288;
+				String ss = String.valueOf(s);
+				String temp = str.replaceAll(ss, "");
+				if (temp.indexOf("（")==0 && temp.indexOf("）")==(temp.length()-1) && temp.length()<8)
 				{
+					System.out.println(temp);
 					break;
 				}
-				if (str.indexOf("标签")!=-1 || str.indexOf("来源")!=-1 || str.indexOf("文章关键词")!=-1)
+
+				if (str.indexOf("标签:")!=-1 || str.indexOf("来源")!=-1 || str.indexOf("文章关键词")!=-1)
 					break;
 				if (str != null && !str.equals(""))
 				{

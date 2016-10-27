@@ -97,4 +97,22 @@ public class newsDao
 		}
 		return newsList;
 	}
+	public boolean deleteByDate(String date)
+	{
+		String sql = "delete from newsList where date < ?";
+		try
+		{
+			PreparedStatement pre = con.prepareStatement(sql);
+			pre.setString(1, date);
+			int count = pre.executeUpdate();
+			if (pre != null)
+				pre.close();
+			return count>0?true:false;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return false;
+		}
+	}
 }

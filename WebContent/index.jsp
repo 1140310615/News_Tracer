@@ -6,17 +6,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-<h1>hello</h1>
-<table>
-	<tr>
-		<td><a href="newsType.action?type=ent">ent</a></td>
-		<td><a href="newsType.action?type=news">news</a></td>
-		<td><a href="newsType.action?type=sport">sport</a></td>
-		<td><a href="newsType.action?type=tech">tech</a></td>
-		<td></td>
-		<td></td>
-	</tr>
-</table>
-</body>
+
+<frameset rows="20%,*" cols="*" frameborder="NO" border="0">
+	 <frame src="" name="topFrame" scrolling="no" noresize>
+ 	 <frameset rows="*" cols="150,*" frameborder="NO" border="0">
+   		 <frame src="newsKind.jsp" name="leftFrame" scrolling="auto" noresize>
+   		 <frame src="" name="mainFrame">
+ 	 </frameset>
+</frameset>
+
 </html>

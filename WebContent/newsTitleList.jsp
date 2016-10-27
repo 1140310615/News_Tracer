@@ -9,10 +9,10 @@
 </head>
 <body>
 	<center>
-	<table border=1>
+	<table border=0>
 	<s:iterator value="list" status="news">
 	<tr> 
-		<td><a href="showBody.action?url=<s:property value="url"/>"><s:property value="name"/></a></td>
+		<td><a href="showBody.action?url=<s:property value="url" />" target="mainFrame"><s:property value="name"/></a></td>
 	</tr>
 	</s:iterator>
 	
