@@ -14,5 +14,13 @@
         <action name="showBody" class="com.hyc.action.hycNewsAction" method="showBody">
         	<result name="success">/main.jsp</result>
         </action>
+        <action name="search" class="com.hyc.action.hycNewsAction" method="search">
+        	<result name="success">/newsTitleList.jsp</result>
+        	<result name="fail">/resultIsEmpty.jsp</result>
+        </action>   
+         	
+        <action name="recomd" class="com.hyc.action.hycNewsAction" method="recomd">
+    		<result name="success">/recom.jsp</result>
+    	</action>
     </package>  
 </struts>

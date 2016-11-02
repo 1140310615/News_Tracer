@@ -24,7 +24,7 @@ public class newsDeleteTimer implements ServletContextListener
 	public void contextInitialized(ServletContextEvent sce) {
 		// TODO Auto-generated method stub
 		//ServletContextListener.super.contextInitialized(sce);
-		new newsDelete();
+		//new newsDelete();
 	}
 	
 }

@@ -4,12 +4,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
+
 
 public class newsDao 
 {
 	private Connection con;
-	//鎵撳紑鏁版嵁搴�
+	
 	public void openConnection()
 	{
 		try
@@ -25,7 +27,7 @@ public class newsDao
 			ex.printStackTrace();
 		}
 	}
-	//鍏抽棴鏁版嵁搴�
+	
 	public void closeConnection()
 	{
 		try
@@ -40,7 +42,7 @@ public class newsDao
 			ex.printStackTrace();
 		}
 	}
-	//鎻掑叆涓�鏉℃柊闂�
+	
 	public boolean insertNews(newsVo vo)
 	{
 		String sql = "insert into newsList values(?,?,?,?,?)";
@@ -66,7 +68,38 @@ public class newsDao
 			return false;
 		}
 	}
-	//鐐瑰嚮鏌愪釜鏂伴椈绫诲埆鏃讹紝杩斿洖姝ょ被鍒殑鎵�鏈夋柊闂�
+	
+	public ArrayList<newsVo> selectAll()
+	{
+		ArrayList<newsVo> newsList = new ArrayList<newsVo>();
+		String sql = "select * from newsList";
+		try
+		{
+			Statement sta = con.createStatement();
+			ResultSet rs = sta.executeQuery(sql);
+			while(rs.next())
+			{
+				newsVo vo = new newsVo();
+				vo.setUrl(rs.getString(1));
+				vo.setName(rs.getString(2));
+				vo.setKeywords(rs.getString(3));
+				vo.setType(rs.getString(4));
+				vo.setDate(rs.getDate(5));
+				newsList.add(vo);
+			}
+			if (rs != null)
+				rs.close();
+			if (sta!= null)
+				sta.close();
+		}
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		return newsList;
+	}
+
+	
 	public ArrayList<newsVo> selectByType(String type)
 	{
 		ArrayList<newsVo> newsList = new ArrayList<newsVo>();

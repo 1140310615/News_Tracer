@@ -153,12 +153,15 @@ public class crawler
 				String temp = str.replaceAll(ss, "");
 				if (temp.indexOf("（")==0 && temp.indexOf("）")==(temp.length()-1) && temp.length()<8)
 				{
-					System.out.println(temp);
 					break;
 				}
-
-				if (str.indexOf("标签:")!=-1 || str.indexOf("来源")!=-1 || str.indexOf("文章关键词")!=-1)
+				if (str.indexOf("更多精彩内容敬请关注")!=-1)
 					break;
+				if (str.indexOf("欢迎访问")!=-1)
+					break;
+				if (str.indexOf("标签:")!=-1 || str.indexOf("新浪简介")!=-1 || str.indexOf("文章关键词")!=-1)
+					break;
+				str = str.replaceAll("&nbsp;", "");
 				if (str != null && !str.equals(""))
 				{
 					newsVo vo = new newsVo();

@@ -6,14 +6,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
+<base target="mainFrame">
 </head>
-<body bgcolor="#FF9797">
-<center>
-	<h2><s:property value="name"/></h2>
-</center>
-<hr>
-	<s:iterator value="list" var="var">
-		<p><s:property value="url"/></p>
+<body bgcolor="red">
+	<center>
+	<table border=0>
+	<s:iterator value="list" status="news">
+	<tr> 
+		<td><a href="showBody.action?url=<s:property value="url" />" target="mainFrame"><s:property value="name"/></a></td>
+	</tr>
 	</s:iterator>
+	
+	</table>
+	</center>
 </body>
 </html>

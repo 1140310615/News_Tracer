@@ -29,7 +29,7 @@ public class newsGetTimer implements ServletContextListener
 	public void contextInitialized(ServletContextEvent sce) {
 		// TODO Auto-generated method stub
 		//ServletContextListener.super.contextInitialized(sce);
-		new newsGet();
+		//new newsGet();
 	}
 	
 }
@@ -39,8 +39,8 @@ class newsGet
 	public newsGet()
 	{
 		Calendar calendar = Calendar.getInstance();
-		calendar.set(Calendar.HOUR_OF_DAY, 2);
-		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.HOUR_OF_DAY, 22);
+		calendar.set(Calendar.MINUTE, 31);
 		calendar.set(Calendar.SECOND,0);
 		Date t = calendar.getTime();    //得出执行任务的时间
 		Timer myTimer = new Timer();
@@ -57,6 +57,7 @@ class newsGet
 				getNews(mySina.newsList,"news");
 				getNews(mySina.sportList,"sport");
 				getNews(mySina.techList,"tech");
+				//getNews(mySina.yingchaoList,"yingchao");
 			}
 		}, t, 1000*60*60*24);
 		
@@ -70,6 +71,8 @@ class newsGet
 		for (int i=0;i < entList.size();i++)
 		{
 			String url = entList.get(i);
+			if (type.equals("yingchao"))
+				System.out.println(url);
 			vo.setUrl(url);
 			if (vo.getUrl().endsWith("html"))
 			{

@@ -10,13 +10,13 @@ public class sina
 	private final tuple5 tech = new tuple5(classifyName.tech,"http://tech.sina.com.cn","ul","id","newsRankTabC1");
 	private final tuple5 ent  = new tuple5(classifyName.ent,"http://ent.sina.com.cn","h2","","");
 	private final tuple5 sport= new tuple5(classifyName.sport,"http://sports.sina.com.cn","ul","class","list01");
-	//private final tuple5 hist = new tuple5(classifyName.hist,"http://blog.sina.com.cn/lm/history/","ul","","");
+	private final tuple5 yingchao = new tuple5(classifyName.yingchao,"http://sports.sina.com.cn/g/premierleague/","ul","","");
 	public List<String> newsList = new ArrayList<String>();     //鐖笅鏉ョ殑鏂伴椈閾炬帴
 	public List<String> miliList = new ArrayList<String>();
 	public List<String> techList = new ArrayList<String>();
 	public List<String> entList = new ArrayList<String>();
 	public List<String> sportList = new ArrayList<String>();
-	public List<String> histList = new ArrayList<String>();
+	public List<String> yingchaoList = new ArrayList<String>();
 	public void getUrl()
 	{
 		newsList = crawler.getUrl(this.news.getUrl());
@@ -24,7 +24,7 @@ public class sina
 		techList = crawler.getUrl(this.tech.getUrl());
 		entList  = crawler.getUrl(this.ent.getUrl());
 		sportList= crawler.getUrl(this.sport.getUrl());
-		//histList = crawler.getUrl(this.hist.getUrl());
+		//yingchaoList = crawler.getUrl(this.yingchao.getUrl());
 	}
 }
 
@@ -67,5 +67,5 @@ class tuple5
 enum classifyName
 {
 	//鏂伴椈銆佸啗浜嬨�佺鎶�銆佸ū涔愩�佷綋鑲层�佸崥瀹�
-	news,mili,tech,ent,sport,hist;     
+	news,mili,tech,ent,sport,yingchao;     
 }
