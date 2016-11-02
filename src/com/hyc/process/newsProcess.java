@@ -13,11 +13,20 @@ public class newsProcess
 	{
 		if (list.size() == 0)
 			return list;
-        Collections.sort(list, new Comparator<newsVo>() {
+        Collections.sort(list, new Comparator<newsVo>() 
+        {
 			@Override
-			public int compare(newsVo o1, newsVo o2) {
+			public int compare(newsVo o1, newsVo o2) 
+			{
+				double a2 = (o2.getCount())/(double)(1 + dateProcess.getE(o2));
+				double a1 = (o1.getCount())/(double)(1 + dateProcess.getE(o1));
 				// TODO Auto-generated method stub
-				return o2.getDate().compareTo(o1.getDate());
+				if (a1 == a2)
+					return o2.getDate().compareTo(o1.getDate());
+				if (a1 > a2)
+					return -1;
+				else
+					return 1;
 			}
         });
 		return list;

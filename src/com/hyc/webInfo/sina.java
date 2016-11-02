@@ -20,10 +20,14 @@ public class sina
 	public void getUrl()
 	{
 		newsList = crawler.getUrl(this.news.getUrl());
+		System.out.println("2");
 		//miliList = crawler.getUrl(this.mili.getUrl());
 		techList = crawler.getUrl(this.tech.getUrl());
+		System.out.println("3");
 		entList  = crawler.getUrl(this.ent.getUrl());
+		System.out.println("4");
 		sportList= crawler.getUrl(this.sport.getUrl());
+		System.out.println("5");
 		//yingchaoList = crawler.getUrl(this.yingchao.getUrl());
 	}
 }

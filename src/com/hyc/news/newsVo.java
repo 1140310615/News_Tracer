@@ -10,7 +10,16 @@ public class newsVo
 	//private String body;        //鏂伴椈鍐呭
 	private String type;        //新闻类型varhcar(5)
 	private Date date;          //新闻日期date
+	private int count;          //访问量
 	
+	public void setCount(int count)
+	{
+		this.count = count;
+	}
+	public int getCount()
+	{
+		return this.count;
+	}
 	public void setUrl(String url)
 	{
 		this.url = url;

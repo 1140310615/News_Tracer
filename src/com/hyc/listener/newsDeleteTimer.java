@@ -24,7 +24,7 @@ public class newsDeleteTimer implements ServletContextListener
 	public void contextInitialized(ServletContextEvent sce) {
 		// TODO Auto-generated method stub
 		//ServletContextListener.super.contextInitialized(sce);
-		//new newsDelete();
+		new newsDelete();
 	}
 	
 }
@@ -60,7 +60,7 @@ class newsDelete
 		Date now = new Date();
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(now);
-		calendar.add(Calendar.DAY_OF_MONTH, -7);    //获取7天之前的日期
+		calendar.add(Calendar.DAY_OF_MONTH, -10);    //获取7天之前的日期
 		Date b = calendar.getTime();
 		return sdf.format(b);
 	}

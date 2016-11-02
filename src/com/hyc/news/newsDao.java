@@ -45,7 +45,7 @@ public class newsDao
 	
 	public boolean insertNews(newsVo vo)
 	{
-		String sql = "insert into newsList values(?,?,?,?,?)";
+		String sql = "insert into newsList values(?,?,?,?,?,?)";
 		try
 		{
 			int count = 0;
@@ -57,6 +57,7 @@ public class newsDao
 			pre.setString(3, vo.getKeywords());
 			pre.setString(4, vo.getType());
 			pre.setDate(5, vo.getDate());
+			pre.setInt(6, 0);
 			//System.out.println(sql);
 			count = pre.executeUpdate();
 			pre.close();
@@ -85,6 +86,7 @@ public class newsDao
 				vo.setKeywords(rs.getString(3));
 				vo.setType(rs.getString(4));
 				vo.setDate(rs.getDate(5));
+				vo.setCount(rs.getInt(6));
 				newsList.add(vo);
 			}
 			if (rs != null)
@@ -117,6 +119,7 @@ public class newsDao
 				vo.setKeywords(rs.getString(3));
 				vo.setType(rs.getString(4));
 				vo.setDate(rs.getDate(5));
+				vo.setCount(rs.getInt(6));
 				newsList.add(vo);
 			}
 			if (rs != null)
@@ -147,5 +150,36 @@ public class newsDao
 			ex.printStackTrace();
 			return false;
 		}
+	}
+	public boolean add(String url)
+	{
+		String sql = "select * from newsList where url=?";
+		try
+		{
+			PreparedStatement pre = con.prepareStatement(sql);
+			pre.setString(1, url);
+			ResultSet rs = pre.executeQuery();
+			if(rs.next())
+			{
+				int count = rs.getInt(6) + 1;
+				System.out.println(count);
+				sql = "update newsList set count=? where url=?";
+				pre = con.prepareStatement(sql);
+				pre.setInt(1, count);
+				pre.setString(2, url);
+				int a = pre.executeUpdate();
+				System.out.println("a = "+a);
+			}
+			if (rs != null)
+				rs.close();
+			if (pre!= null)
+				pre.close();
+		}
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 }

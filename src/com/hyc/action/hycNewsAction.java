@@ -14,7 +14,7 @@ public class hycNewsAction extends ActionSupport
 	private String name;
 	private String url;
 	private String searchKey;
-	private ArrayList<String> nList;
+	public static ArrayList<newsVo> nList;
 	private ArrayList<newsVo> list;
 	public void setSearchKey(String searchKey)
 	{
@@ -24,13 +24,13 @@ public class hycNewsAction extends ActionSupport
 	{
 		return this.searchKey;
 	}
-	public void setNList(ArrayList<String> nList)
+	public void setNList(ArrayList<newsVo> nList)
 	{
-		this.nList = nList;
+		hycNewsAction.nList = nList;
 	}
-	public ArrayList<String> getNList()
+	public ArrayList<newsVo> getNList()
 	{
-		return this.nList;
+		return nList;
 	}
 	
 	public void setUrl(String url)
@@ -87,9 +87,11 @@ public class hycNewsAction extends ActionSupport
 	{
 		crawler newsCra = new crawler();
 		name = newsCra.getHead(url);
-//		para = newsCra.getText(url);
 		list = newsCra.getText(url);
-	
+		newsDao dao = new newsDao();
+		dao.openConnection();
+		dao.add(url);
+		dao.closeConnection();
 		return "success";
 	}
 	
