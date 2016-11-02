@@ -29,9 +29,13 @@ public class crawler
 		try
 		{
 			Parser parser = getParser(url);     //鏋勯�犺В鏋愬櫒
+			System.out.println("url-->1");
 			NodeFilter nodefilter = null;
+			System.out.println("url-->1");
 			nodefilter = new NodeClassFilter(LinkTag.class);
+			System.out.println("url-->1");
 			NodeList nodelist = parser.extractAllNodesThatMatch(nodefilter);
+			System.out.println("url-->2");
 			for (int i = 0;i < nodelist.size();i++)
 			{
 				Node node = nodelist.elementAt(i);
@@ -57,6 +61,7 @@ public class crawler
 			ex.printStackTrace();
 			return null;
 		}
+		System.out.println("url-->3");
 		if (urlList != null && urlList.size()>200)
 		{
 			Comparator<String> comparator = new Comparator<String>(){
@@ -133,6 +138,7 @@ public class crawler
 			ex.printStackTrace();
 			return "";
 		}
+		title = title.replaceAll("&quot;", "");
 		return title;
 	}
 	
@@ -151,14 +157,18 @@ public class crawler
 				char s = 12288;
 				String ss = String.valueOf(s);
 				String temp = str.replaceAll(ss, "");
-				if (temp.indexOf("（")==0 && temp.indexOf("）")==(temp.length()-1) && temp.length()<8)
+				if (temp.indexOf("（")==0 && temp.indexOf("）")==(temp.length()-1) && temp.length()<=10)
 				{
-					System.out.println(temp);
 					break;
 				}
-
-				if (str.indexOf("标签:")!=-1 || str.indexOf("来源")!=-1 || str.indexOf("文章关键词")!=-1)
+				
+				if (str.indexOf("更多精彩内容敬请关注")!=-1 || str.indexOf("免费看房")!=-1)
 					break;
+				if (str.indexOf("欢迎访问")!=-1)
+					break;
+				if (str.indexOf("标签:")!=-1 || str.indexOf("新浪简介")!=-1 || str.indexOf("文章关键词")!=-1)
+					break;
+				str = str.replaceAll("&nbsp;", "");
 				if (str != null && !str.equals(""))
 				{
 					newsVo vo = new newsVo();

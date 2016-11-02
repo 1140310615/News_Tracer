@@ -1,5 +1,7 @@
 package com.hyc.listener;
 
+import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -11,10 +13,14 @@ import java.util.regex.Pattern;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import com.hyc.action.hycNewsAction;
 import com.hyc.news.newsDao;
 import com.hyc.news.newsVo;
+import com.hyc.process.dateProcess;
+import com.hyc.process.newsProcess;
 import com.hyc.webInfo.crawler;
 import com.hyc.webInfo.sina;
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 public class newsGetTimer implements ServletContextListener 
 {
@@ -40,8 +46,8 @@ class newsGet
 	{
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(Calendar.HOUR_OF_DAY, 2);
-		calendar.set(Calendar.MINUTE, 0);
-		calendar.set(Calendar.SECOND,0);
+		calendar.set(Calendar.MINUTE, 1);
+		calendar.set(Calendar.SECOND,30);
 		Date t = calendar.getTime();    //得出执行任务的时间
 		Timer myTimer = new Timer();
 		if (t.before(new Date()))
@@ -51,12 +57,33 @@ class newsGet
 		myTimer.scheduleAtFixedRate(new TimerTask(){
 			public void run()
 			{
+				System.out.println("开始");
 				sina mySina = new sina();
 				mySina.getUrl();
+				System.out.println("获得url");
 				getNews(mySina.entList,"ent");
+				System.out.println("娱乐");
 				getNews(mySina.newsList,"news");
+				System.out.println("综合");
 				getNews(mySina.sportList,"sport");
+				System.out.println("运动");
 				getNews(mySina.techList,"tech");
+				
+				System.out.println("结束");
+				newsDao dao = new newsDao();
+				dao.openConnection();
+				ArrayList<newsVo> nList = dao.selectAll();
+				dao.closeConnection();
+				for (int i = 0;i < nList.size();i++)
+				{
+					int a = dateProcess.getE(nList.get(i));
+					if (a > 3)
+					{
+						nList.remove(i);
+					}
+				}
+				hycNewsAction.nList = new newsProcess().newsSort(nList);
+				//getNews(mySina.yingchaoList,"yingchao");
 			}
 		}, t, 1000*60*60*24);
 		
@@ -70,6 +97,8 @@ class newsGet
 		for (int i=0;i < entList.size();i++)
 		{
 			String url = entList.get(i);
+			if (type.equals("yingchao"))
+				System.out.println(url);
 			vo.setUrl(url);
 			if (vo.getUrl().endsWith("html"))
 			{

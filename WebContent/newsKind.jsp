@@ -7,7 +7,8 @@
 <title>newsKind</title>
 </head>
 <body>
-<table width="150" border="0" align="left">
+
+<table width="150" border="0" align="center">
 	<tr>
 		<td><a href="newsType.action?type=news" target="mainFrame">综合</a></td>
 	</tr>
@@ -20,6 +21,10 @@
 	<tr>
 		<td><a href="newsType.action?type=tech" target="mainFrame">科技</a></td>
 	</tr>
+	<tr>
+		<td><a href="newsType.action?type=yingchao" target="mainFrame">英超</a></td>
+	</tr>
 </table>
+
 </body>
 </html>

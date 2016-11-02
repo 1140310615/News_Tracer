@@ -6,21 +6,31 @@ import com.hyc.news.newsDao;
 import com.hyc.news.newsVo;
 import com.hyc.webInfo.crawler;
 import com.opensymphony.xwork2.ActionSupport;
+import com.hyc.process.*;
 
 public class hycNewsAction extends ActionSupport
 {
 	private String type;
 	private String name;
 	private String url;
-	private ArrayList<String> nList;
+	private String searchKey;
+	public static ArrayList<newsVo> nList;
 	private ArrayList<newsVo> list;
-	public void setNList(ArrayList<String> nList)
+	public void setSearchKey(String searchKey)
 	{
-		this.nList = nList;
+		this.searchKey = searchKey;
 	}
-	public ArrayList<String> getNList()
+	public String getSearchKey()
 	{
-		return this.nList;
+		return this.searchKey;
+	}
+	public void setNList(ArrayList<newsVo> nList)
+	{
+		hycNewsAction.nList = nList;
+	}
+	public ArrayList<newsVo> getNList()
+	{
+		return nList;
 	}
 	
 	public void setUrl(String url)
@@ -64,11 +74,11 @@ public class hycNewsAction extends ActionSupport
 
 	public String newsType()
 	{
-	//	newsGet.getNews();
-	//	newsGet.run();
 		newsDao dao = new newsDao();
 		dao.openConnection();
 		list = dao.selectByType(type);
+		//list = dao.selectAll();
+		list = new newsProcess().newsSort(list);
 		dao.closeConnection();
 		return "success";
 	}
@@ -77,9 +87,43 @@ public class hycNewsAction extends ActionSupport
 	{
 		crawler newsCra = new crawler();
 		name = newsCra.getHead(url);
-//		para = newsCra.getText(url);
 		list = newsCra.getText(url);
+		newsDao dao = new newsDao();
+		dao.openConnection();
+		dao.add(url);
+		dao.closeConnection();
+		return "success";
+	}
 	
+	public String search()
+	{
+		ArrayList<newsVo> temp = new ArrayList<newsVo>();
+		newsDao dao = new newsDao();
+		list = new ArrayList<newsVo>();
+		dao.openConnection();
+		temp = dao.selectAll();
+		dao.closeConnection();
+		if (searchKey==null || searchKey.equals(""))
+			return "fail";
+		for (int i = 0;i < temp.size();i++)
+		{
+			newsVo vo = temp.get(i);
+			String str1 = vo.getKeywords();
+			String str2 = vo.getName();
+			if (str1.indexOf(searchKey)!=-1 || str2.indexOf(searchKey)!=-1)
+				list.add(vo);
+		}
+		if (list.size()==0)
+			return "fail";
+		return "success";
+	}
+	
+	public String recomd()
+	{
+		newsDao dao = new newsDao();
+		dao.openConnection();
+		list = dao.selectAll();
+		dao.closeConnection();
 		return "success";
 	}
 

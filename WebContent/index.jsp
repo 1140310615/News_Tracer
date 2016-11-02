@@ -4,14 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>香港记者</title>
 </head>
 
 <frameset rows="20%,*" cols="*" frameborder="NO" border="0">
-	 <frame src="" name="topFrame" scrolling="no" noresize>
+	 <frame src="head.jsp" name="topFrame" scrolling="no" noresize>
  	 <frameset rows="*" cols="150,*" frameborder="NO" border="0">
    		 <frame src="newsKind.jsp" name="leftFrame" scrolling="auto" noresize>
-   		 <frame src="" name="mainFrame">
+   		 <frame src="skip.jsp" name="mainFrame">
  	 </frameset>
 </frameset>
 

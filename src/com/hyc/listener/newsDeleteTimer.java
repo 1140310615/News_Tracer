@@ -60,7 +60,7 @@ class newsDelete
 		Date now = new Date();
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(now);
-		calendar.add(Calendar.DAY_OF_MONTH, -7);    //获取7天之前的日期
+		calendar.add(Calendar.DAY_OF_MONTH, -10);    //获取7天之前的日期
 		Date b = calendar.getTime();
 		return sdf.format(b);
 	}
