@@ -9,8 +9,8 @@
 
 <frameset rows="20%,*" cols="*" frameborder="NO" border="0">
 	 <frame src="head.jsp" name="topFrame" scrolling="no" noresize>
- 	 <frameset rows="*" cols="150,*" frameborder="NO" border="0">
-   		 <frame src="newsKind.jsp" name="leftFrame" scrolling="auto" noresize>
+ 	 <frameset rows="*" cols="200,*" frameborder="NO" border="0">
+   		 <frame src="newsKind.jsp" name="leftFrame" scrolling="no" noresize>
    		 <frame src="skip.jsp" name="mainFrame">
  	 </frameset>
 </frameset>

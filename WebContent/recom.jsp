@@ -8,7 +8,7 @@
 <title></title>
 <base target="mainFrame">
 </head>
-<body bgcolor="red">
+<body bgcolor="#F0F0F0">
 	<center>
 	<table border=0>
 	<s:iterator value="list" status="news">

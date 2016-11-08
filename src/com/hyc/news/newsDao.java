@@ -19,7 +19,7 @@ public class newsDao
 			if (con == null)
 			{
 				Class.forName("com.mysql.jdbc.Driver");
-				con = DriverManager.getConnection("jdbc:mysql://localhost:3306/news?characterEncoding=utf8","root","123456");
+				con = DriverManager.getConnection("jdbc:mysql://localhost:3306/news?characterEncoding=utf8&useSSL=true","root","50605060");
 			}
 		}
 		catch(Exception ex)
@@ -45,7 +45,26 @@ public class newsDao
 	
 	public boolean insertNews(newsVo vo)
 	{
-		String sql = "insert into newsList values(?,?,?,?,?,?)";
+		String sql = "select name from newslist where url = ?";
+		try
+		{
+			PreparedStatement pre_t = con.prepareStatement(sql);
+			pre_t.setString(1,vo.getUrl());
+			ResultSet rs = pre_t.executeQuery();
+			if(rs.next()){
+				rs.close();
+				pre_t.close();
+				return false;
+			}
+			rs.close();
+			pre_t.close();
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return false;
+		}
+		sql = "insert into newsList values(?,?,?,?,?,?)";
 		try
 		{
 			int count = 0;

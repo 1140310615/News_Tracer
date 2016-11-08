@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 </head>
-<body bgcolor="#FF9797">
+<body bgcolor="#F0F0F0">
 <center>
 	<h2><s:property value="name"/></h2>
 </center>

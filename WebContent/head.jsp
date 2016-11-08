@@ -7,12 +7,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 </head>
-<body bgcolor="#FFAAD5">
+<body bgcolor="#858585">
 <table align="right">
 <tr>
 <td>
 <s:form action="search" method="post" target="mainFrame">
-	<s:textfield name="searchKey" cssStyle="border-radius:45px;width:200px;height:20px;outline:none;background-image:url(search.jpg);background-repeat:no-repeat;background-size:21px 21px;background-position:95%;" placeholder="   搜索关键字"/>
+	<s:textfield name="searchKey" cssStyle="border-radius:45px;width:200px;height:30px;outline:none;background-image:url(search.jpg);background-repeat:no-repeat;background-size:21px 21px;background-position:95%;" placeholder="    搜索关键字"/>
 	
 </s:form>
 	</td>

@@ -8,21 +8,21 @@
 </head>
 <body>
 
-<table width="150" border="0" align="center">
+<table width="150" border="0" align="center" bgcolor="#FFF68F" border="1" cellpadding="7" cellspacing="0" style="font-family:'楷体'; font-size:20px; height:200px;">
 	<tr>
-		<td><a href="newsType.action?type=news" target="mainFrame">综合</a></td>
+		<td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="newsType.action?type=news" target="mainFrame">综合</a></td>
 	</tr>
 	<tr>
-		<td><a href="newsType.action?type=ent" target="mainFrame">娱乐</a></td>
+		<td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="newsType.action?type=ent" target="mainFrame">娱乐</a></td>
 	</tr>
 	<tr>
-		<td><a href="newsType.action?type=sport" target="mainFrame">运动</a></td>
+		<td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="newsType.action?type=sport" target="mainFrame">运动</a></td>
 	</tr>
 	<tr>
-		<td><a href="newsType.action?type=tech" target="mainFrame">科技</a></td>
+		<td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="newsType.action?type=tech" target="mainFrame">科技</a></td>
 	</tr>
 	<tr>
-		<td><a href="newsType.action?type=yingchao" target="mainFrame">英超</a></td>
+		<td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="newsType.action?type=yingchao" target="mainFrame">英超</a></td>
 	</tr>
 </table>
 

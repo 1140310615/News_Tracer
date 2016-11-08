@@ -10,12 +10,12 @@
 	<table align="center">
 	<tr>
 	<td>
-	<img alt="结果为空" width="200px" height="200px" src="http://g.hiphotos.baidu.com/zhidao/pic/item/ac4bd11373f082024ce777724dfbfbedab641b01.jpg">
+	<!--img alt="结果为空" width="200px" height="200px" src="http://g.hiphotos.baidu.com/zhidao/pic/item/ac4bd11373f082024ce777724dfbfbedab641b01.jpg"-->
 	</td>
 	</tr>
 	<tr>
 		<td>
-			<p>抱歉!没搜索到相关新闻</p>
+			<p><b style="font-family:'楷体'; background-color:transparent; font-size:20px;">抱歉!没搜索到相关新闻</b></p>
 			</td>
 		</tr>
 	</table>
