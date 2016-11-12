@@ -22,6 +22,9 @@ font-size:22px;
 	<h2><s:property value="name"/></h2>
 </center>
 <hr>
+	<s:iterator value="imgList" var="var">
+		<center><img src=<s:property value="var"/>></center> <br>
+	</s:iterator>
 	<s:iterator value="list" var="var">
 		<p><s:property value="url"/></p>
 	</s:iterator>

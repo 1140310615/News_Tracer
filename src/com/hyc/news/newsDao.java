@@ -19,7 +19,7 @@ public class newsDao
 			if (con == null)
 			{
 				Class.forName("com.mysql.jdbc.Driver");
-				con = DriverManager.getConnection("jdbc:mysql://localhost:3306/news?characterEncoding=utf8&useSSL=true","root","50605060");
+				con = DriverManager.getConnection("jdbc:mysql://localhost:3306/news?characterEncoding=utf8","root","123456");
 			}
 		}
 		catch(Exception ex)
@@ -181,7 +181,7 @@ public class newsDao
 			if(rs.next())
 			{
 				int count = rs.getInt(6) + 1;
-				System.out.println(count);
+				//System.out.println(count);
 				sql = "update newsList set count=? where url=?";
 				pre = con.prepareStatement(sql);
 				pre.setInt(1, count);

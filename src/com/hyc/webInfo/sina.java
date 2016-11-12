@@ -17,17 +17,17 @@ public class sina
 	public List<String> entList = new ArrayList<String>();
 	public List<String> sportList = new ArrayList<String>();
 	public List<String> yingchaoList = new ArrayList<String>();
-	public void getUrl()
+	public void getUrl() throws InterruptedException
 	{
 		newsList = crawler.getUrl(this.news.getUrl());
-		System.out.println("2");
+		Thread.sleep(2000);
 		//miliList = crawler.getUrl(this.mili.getUrl());
 		techList = crawler.getUrl(this.tech.getUrl());
-		System.out.println("3");
+		Thread.sleep(2000);
 		entList  = crawler.getUrl(this.ent.getUrl());
-		System.out.println("4");
+		Thread.sleep(2000);
 		sportList= crawler.getUrl(this.sport.getUrl());
-		System.out.println("5");
+		Thread.sleep(2000);
 		//yingchaoList = crawler.getUrl(this.yingchao.getUrl());
 	}
 }

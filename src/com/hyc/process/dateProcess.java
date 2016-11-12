@@ -16,7 +16,6 @@ public class dateProcess
 		String formatDate = null;  
 		Date date = new Date();  
 		int a = 0;
-		// 输出格式: 2015-1-27   或	Jan 27, 2015
 		formatDate = DateFormat.getDateInstance(DateFormat.MEDIUM).format(date);
 		try 
 		{

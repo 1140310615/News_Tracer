@@ -8,6 +8,6 @@
 <title></title>
 </head>
 <body>
-<%response.sendRedirect("recomd.action"); %>
+<%response.sendRedirect("recomd.action") ;%>
 </body>
 </html>

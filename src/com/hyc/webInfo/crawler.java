@@ -141,7 +141,35 @@ public class crawler
 		title = title.replaceAll("&quot;", "");
 		return title;
 	}
-	
+	public ArrayList<String> getImg(String url)
+	{
+		
+		ArrayList<String> imgList = new ArrayList<String>();
+		try
+		{
+			Parser parser = getParser(url);
+			NodeFilter Filter = new AndFilter(new TagNameFilter("div"),new HasAttributeFilter("class","img_wrapper"));
+			NodeList nodelist = parser.extractAllNodesThatMatch(Filter);
+			for (int i = 0;i < nodelist.size();i++)
+			{
+				String str = nodelist.elementAt(i).toHtml();
+				int index1 = str.indexOf("http");
+				int index2 = str.indexOf("jpg");
+				int index3 = str.indexOf("png");
+				int max = index2 > index3?index2 : index3;
+				if (index1 == -1 || max==-1)
+					continue;
+				else
+					str = str.substring(index1, max+3);
+				imgList.add(str);
+			}
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		return imgList;
+	}
 	public ArrayList<newsVo> getText(String url)
 	{
 		ArrayList<newsVo> body = new ArrayList<newsVo>();
@@ -164,8 +192,9 @@ public class crawler
 				
 				if (str.indexOf("更多精彩内容敬请关注")!=-1 || str.indexOf("免费看房")!=-1)
 					break;
-				if (str.indexOf("欢迎访问")!=-1)
+				if (str.indexOf("欢迎访问")!=-1 || str.indexOf("已收藏!")!=-1)
 					break;
+				
 				if (str.indexOf("标签:")!=-1 || str.indexOf("新浪简介")!=-1 || str.indexOf("文章关键词")!=-1)
 					break;
 				str = str.replaceAll("&nbsp;", "");

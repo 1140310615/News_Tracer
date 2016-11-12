@@ -45,8 +45,8 @@ class newsGet
 	public newsGet()
 	{
 		Calendar calendar = Calendar.getInstance();
-		calendar.set(Calendar.HOUR_OF_DAY, 10);
-		calendar.set(Calendar.MINUTE, 16);
+		calendar.set(Calendar.HOUR_OF_DAY, 1);
+		calendar.set(Calendar.MINUTE, 10);
 		calendar.set(Calendar.SECOND,00);
 		Date t = calendar.getTime();    //得出执行任务的时间
 		Timer myTimer = new Timer();
@@ -59,7 +59,12 @@ class newsGet
 			{
 				System.out.println("开始");
 				sina mySina = new sina();
-				mySina.getUrl();
+				try {
+					mySina.getUrl();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				System.out.println("获得url");
 				getNews(mySina.entList,"ent");
 				System.out.println("娱乐");
@@ -70,20 +75,7 @@ class newsGet
 				getNews(mySina.techList,"tech");
 				
 				System.out.println("结束");
-				newsDao dao = new newsDao();
-				dao.openConnection();
-				ArrayList<newsVo> nList = dao.selectAll();
-				dao.closeConnection();
-				for (int i = 0;i < nList.size();i++)
-				{
-					int a = dateProcess.getE(nList.get(i));
-					if (a > 3)
-					{
-						nList.remove(i);
-					}
-				}
-				hycNewsAction.nList = new newsProcess().newsSort(nList);
-				//getNews(mySina.yingchaoList,"yingchao");
+					//getNews(mySina.yingchaoList,"yingchao");
 			}
 		}, t, 1000*60*60*24);
 		
@@ -97,8 +89,7 @@ class newsGet
 		for (int i=0;i < entList.size();i++)
 		{
 			String url = entList.get(i);
-			if (type.equals("yingchao"))
-				System.out.println(url);
+			
 			vo.setUrl(url);
 			if (vo.getUrl().endsWith("html"))
 			{
@@ -108,6 +99,12 @@ class newsGet
 				vo.setDate(getDate(url));
 				vo.setType(type);
 				dao.insertNews(vo);
+			}
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 		dao.closeConnection();

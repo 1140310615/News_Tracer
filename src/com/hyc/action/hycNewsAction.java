@@ -15,7 +15,16 @@ public class hycNewsAction extends ActionSupport
 	private String url;
 	private String searchKey;
 	public static ArrayList<newsVo> nList;
+	private ArrayList<String> imgList;
 	private ArrayList<newsVo> list;
+	public void setImgList(ArrayList<String> list)
+	{
+		this.imgList = list;
+	}
+	public ArrayList<String> getImgList()
+	{
+		return this.imgList;
+	}
 	public void setSearchKey(String searchKey)
 	{
 		this.searchKey = searchKey;
@@ -86,11 +95,13 @@ public class hycNewsAction extends ActionSupport
 	public String showBody()
 	{
 		crawler newsCra = new crawler();
-		name = newsCra.getHead(url);
+		name = newsCra.getHead(url);   
 		list = newsCra.getText(url);
+		imgList = newsCra.getImg(url);
+		
 		newsDao dao = new newsDao();
 		dao.openConnection();
-		dao.add(url);
+		dao.add(url);      //访问量加一
 		dao.closeConnection();
 		return "success";
 	}
@@ -122,8 +133,19 @@ public class hycNewsAction extends ActionSupport
 	{
 		newsDao dao = new newsDao();
 		dao.openConnection();
-		list = dao.selectAll();
+		nList = dao.selectAll();
+		list = new ArrayList<newsVo>();
 		dao.closeConnection();
+		for (int i = 0;i < nList.size();i++)
+		{
+			int a = dateProcess.getE(nList.get(i));
+			if (a > 3)
+			{
+				continue;
+			}
+			list.add(nList.get(i));
+		}
+		list = new newsProcess().newsSort(list);
 		return "success";
 	}
 

@@ -36,19 +36,19 @@ text-decoration:none;
 
 <table width="130" border="0" align="center" bgcolor="#FFF68F" style="height:350px;">
 	<tr>
-		<td>&nbsp;&nbsp;<a href="newsType.action?type=news" target="mainFrame">综合</a></td>
+		<td><a href="recomd.action" target="mainFrame">&nbsp;&nbsp;&nbsp;&nbsp;推荐</a></td>
 	</tr>
 	<tr>
-		<td>&nbsp;&nbsp;<a href="newsType.action?type=ent" target="mainFrame">娱乐</a></td>
+		<td><a href="newsType.action?type=news" target="mainFrame">&nbsp;&nbsp;&nbsp;&nbsp;综合</a></td>
 	</tr>
 	<tr>
-		<td>&nbsp;&nbsp;<a href="newsType.action?type=sport" target="mainFrame">运动</a></td>
+		<td><a href="newsType.action?type=ent" target="mainFrame">&nbsp;&nbsp;&nbsp;&nbsp;娱乐</a></td>
 	</tr>
 	<tr>
-		<td>&nbsp;&nbsp;<a href="newsType.action?type=tech" target="mainFrame">科技</a></td>
+		<td><a href="newsType.action?type=sport" target="mainFrame">&nbsp;&nbsp;&nbsp;&nbsp;运动</a></td>
 	</tr>
 	<tr>
-		<td>&nbsp;&nbsp;<a href="newsType.action?type=yingchao" target="mainFrame">英超</a></td>
+		<td><a href="newsType.action?type=tech" target="mainFrame">&nbsp;&nbsp;&nbsp;&nbsp;科技</a></td>
 	</tr>
 </table>
 
