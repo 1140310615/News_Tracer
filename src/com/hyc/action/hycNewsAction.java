@@ -103,6 +103,7 @@ public class hycNewsAction extends ActionSupport
 		dao.openConnection();
 		dao.add(url);      //访问量加一
 		dao.closeConnection();
+	
 		return "success";
 	}
 	
