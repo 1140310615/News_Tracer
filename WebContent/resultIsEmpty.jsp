@@ -15,7 +15,8 @@
 	</tr>
 	<tr>
 		<td>
-			<p><b style="font-family:'楷体'; background-color:transparent; font-size:20px;">抱歉!没搜索到相关新闻</b></p>
+			<br>
+			<p><b style="font-family:'楷体'; font-size:25px;">非常抱歉!暂无相关新闻!</b></p>
 			</td>
 		</tr>
 	</table>

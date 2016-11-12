@@ -7,7 +7,7 @@
 <title>香港记者</title>
 </head>
 
-<frameset rows="20%,*" cols="*" frameborder="NO" border="0">
+<frameset rows="15%,*" cols="*" frameborder="NO" border="0">
 	 <frame src="head.jsp" name="topFrame" scrolling="no" noresize>
  	 <frameset rows="*" cols="200,*" frameborder="NO" border="0">
    		 <frame src="newsKind.jsp" name="leftFrame" scrolling="no" noresize>

@@ -6,6 +6,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
+
+<style type="text/css">
+p{
+
+font-family:'楷体';
+font-size:22px;
+
+}
+
+</style>
 </head>
 <body bgcolor="#F0F0F0">
 <center>

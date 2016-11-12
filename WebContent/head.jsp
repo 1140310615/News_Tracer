@@ -12,7 +12,7 @@
 <tr>
 <td>
 <s:form action="search" method="post" target="mainFrame">
-	<s:textfield name="searchKey" cssStyle="border-radius:45px;width:200px;height:30px;outline:none;background-image:url(search.jpg);background-repeat:no-repeat;background-size:21px 21px;background-position:95%;" placeholder="    搜索关键字"/>
+	<s:textfield name="searchKey" cssStyle="font-family:'楷体';font-size:22px;border-radius:10px;width:200px;height:30px;outline:none;background-image:url(search.jpg);background-repeat:no-repeat;background-size:21px 21px;background-position:95%;" placeholder=" 搜索关键字"/>
 	
 </s:form>
 	</td>
