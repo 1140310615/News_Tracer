@@ -9,18 +9,21 @@
             <result name="success">/index.jsp</result>  
         </action>       
         <action name="newsType" class="com.hyc.action.hycNewsAction" method="newsType">
-        	<result name="success">/newsTitleList.jsp</result>
+        	<result name="success">/index.jsp</result>
         </action>
         <action name="showBody" class="com.hyc.action.hycNewsAction" method="showBody">
         	<result name="success">/main.jsp</result>
         </action>
         <action name="search" class="com.hyc.action.hycNewsAction" method="search">
         	<result name="success">/newsTitleList.jsp</result>
-        	<result name="fail">/resultIsEmpty.jsp</result>
+        	<result name="fail">/newsTitleList.jsp</result>
         </action>   
          	
         <action name="recomd" class="com.hyc.action.hycNewsAction" method="recomd">
-    		<result name="success">/recom.jsp</result>
+    		<result name="success">/index.jsp</result>
+    	</action>
+    	<action name="select" class="com.hyc.action.hycNewsAction" method="select">
+    		<result name="success">/index.jsp</result>
     	</action>
     </package>  
 </struts>

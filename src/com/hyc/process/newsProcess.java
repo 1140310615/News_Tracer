@@ -32,6 +32,29 @@ public class newsProcess
 		return list;
 	}
 	
+	public ArrayList<newsVo> top(ArrayList<newsVo> list)
+	{
+		if (list.size() == 0)
+			return list;
+        Collections.sort(list, new Comparator<newsVo>() 
+        {
+			@Override
+			public int compare(newsVo o1, newsVo o2) 
+			{
+				double a2 = (o2.getCount());
+				double a1 = (o1.getCount());
+				// TODO Auto-generated method stub
+				if (a1 == a2)
+					return o2.getDate().compareTo(o1.getDate());
+				if (a1 > a2)
+					return -1;
+				else
+					return 1;
+			}
+        });
+		return list;
+	}
+	
 	public static boolean isSimilar(String str1,String str2)
 	{
 		int a = str1.length();

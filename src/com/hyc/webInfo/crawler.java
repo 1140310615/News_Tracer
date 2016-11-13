@@ -153,8 +153,8 @@ public class crawler
 			for (int i = 0;i < nodelist.size();i++)
 			{
 				String str = nodelist.elementAt(i).toHtml();
-				int index1 = str.indexOf("http");
-				int index2 = str.indexOf("jpg");
+				int index1 = str.lastIndexOf("http");
+				int index2 = str.lastIndexOf("jpg");
 				int index3 = str.indexOf("png");
 				int max = index2 > index3?index2 : index3;
 				if (index1 == -1 || max==-1)
@@ -185,7 +185,7 @@ public class crawler
 				char s = 12288;
 				String ss = String.valueOf(s);
 				String temp = str.replaceAll(ss, "");
-				if (temp.indexOf("（")==0 && temp.indexOf("）")==(temp.length()-1) && temp.length()<=10)
+				if (temp.indexOf("（")==0 && temp.indexOf("）")==(temp.length()-1) && temp.length()<=10 && i < 2)
 				{
 					break;
 				}

@@ -17,6 +17,36 @@ public class hycNewsAction extends ActionSupport
 	public static ArrayList<newsVo> nList;
 	private ArrayList<String> imgList;
 	private ArrayList<newsVo> list;
+	public static ArrayList<newsVo> recomList;
+	public static ArrayList<newsVo> topList;
+	private String choice;
+	public void setTopList(ArrayList<newsVo> list)
+	{
+		topList = list;
+	}
+	public ArrayList<newsVo> getTopList()
+	{
+		return topList;
+	}
+	public void setRecomList(ArrayList<newsVo> list)
+	{
+		recomList = list;
+	}
+	public ArrayList<newsVo> getRecomList()
+	{
+		return recomList;
+	}
+	public void setChioce(String c)
+	{
+		if (c == null || c.equals(""))
+			this.choice = "0";
+		else
+			this.choice = c;
+	}
+	public String getChioce()
+	{
+		return this.choice;
+	}
 	public void setImgList(ArrayList<String> list)
 	{
 		this.imgList = list;
@@ -147,6 +177,21 @@ public class hycNewsAction extends ActionSupport
 			list.add(nList.get(i));
 		}
 		list = new newsProcess().newsSort(list);
+		recomList = list;
+		list = new newsProcess().top(list);
+		topList = new ArrayList<newsVo>();
+		int a = list.size();
+		a = 10 < a? 10 : a;
+		for (int i = 0;i < a;i++)
+		{
+			topList.add(list.get(i));
+		}
+		return "success";
+	}
+	
+	public String select()
+	{
+		
 		return "success";
 	}
 
