@@ -12,14 +12,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="">
     <meta name="author" content="">
+	<style type="text/css">
+	form{
+	position:absolute;
+	right:0;
+	top:20%;
 	
-    <title>Newspaper</title>
-		<style type="text/css">
-	html{height:100%;}
-	body{min-height:90%;margin:0;padding:0;position:relative;}
-
-	footer{position:absolute;bottom:0;width:100%;height:100px;background-color: #ffc0cb;}
+	}
+	
 	</style>
+    <title>Newspaper</title>
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css"  type="text/css">
 	
@@ -58,19 +60,10 @@
 				</li>
 				<li><a href="newsType.action?type=sport"> 运动</a></li>
 				<li><a href="newsType.action?type=tech"> 科技</a></li>
-				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-				
+			</ul>
+			<ul class="list-inline navbar-right">
 				<li>
-				
-				<s:form action="search" method="post">
+					<s:form action="search" method="post">
 					<s:textfield name="searchKey" cssStyle="font-family:'楷体';font-size:22px;border-radius:10px;width:200px;height:30px;outline:none;background-image:url(search.jpg);background-repeat:no-repeat;background-size:21px 21px;background-position:95%;" placeholder=" 搜索关键字"/>
 				</s:form>
 				</li>
@@ -127,12 +120,8 @@
 			</div>
 		</div>
 	</div>
+	</div>
 
-	<footer>
-		<div class="copy-right">
-			<p>Copyright &copy; 2016.HEYONGCHAO All rights reserved.</p>
-		</div>
-	</footer>
 	<!-- Footer -->
 	
 	<!-- JS -->

@@ -15,7 +15,15 @@
     <meta name="author" content="">
 	
     <title>Newspaper</title>
+		<style type="text/css">
+	form{
+	position:absolute;
+	right:0;
+	top:20%;
 	
+	}
+	
+	</style>
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css"  type="text/css">
 	
@@ -54,23 +62,16 @@
 				</li>
 				<li><a href="newsType.action?type=sport"> 运动</a></li>
 				<li><a href="newsType.action?type=tech"> 科技</a></li>
-				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-				
+
+			</ul>
+			<ul class="list-inline navbar-right">
 				<li>
-				
-				<s:form action="search" method="post">
+					<s:form action="search" method="post">
 					<s:textfield name="searchKey" cssStyle="font-family:'楷体';font-size:22px;border-radius:10px;width:200px;height:30px;outline:none;background-image:url(search.jpg);background-repeat:no-repeat;background-size:21px 21px;background-position:95%;" placeholder=" 搜索关键字"/>
 				</s:form>
 				</li>
 			</ul>
+
 		</div>
 	</nav>
 </header>	
@@ -136,6 +137,7 @@
 						type = vo.getType();
 						int temp = i % 10;
 						String imgUrl = "images/0"+String.valueOf(temp)+".jpg";
+						String date = vo.getDate().toString();
 						%>
 						<div class="box">
 						<a href="showBody.action?url=<%=url %>"><h3 class="vid-name"><%=name%></h3></a>
@@ -144,7 +146,8 @@
 								<div class="zoom-caption"></div>
 								<img src="<%=imgUrl %>" />
 							</div>
-							<p></p>
+							<p><%=date %></p><br>
+							<p><%=vo.getKeywords() %>
 						</div>
 					</div>
 					<hr class="line">
