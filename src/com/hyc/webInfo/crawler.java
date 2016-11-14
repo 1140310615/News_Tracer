@@ -22,6 +22,9 @@ import com.hyc.news.newsVo;
 
 
 public class crawler 
+/*
+ * 爬虫
+ */
 {
 	public static List<String> getUrl(String url)
 	{

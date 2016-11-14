@@ -6,9 +6,9 @@ import java.net.URL;
 import java.net.URLConnection;
 
 /*
- * è¯´æ˜ï¼š
- * out_file_name:ä¸‹è½½åˆ°çš„å›¾ç‰‡çš„åå­—ï¼ˆä¹Ÿå¯ä»¥æ˜¯ç›¸å¯¹è·¯å¾„æˆ–ç»å¯¹è·¯å¾„ï¼‰
- * æä¾›ç›¸åº”å›¾ç‰‡çš„åœ°å€ï¼Œå³å¯ä¸‹è½½å¯¹åº”çš„å›¾ç‰‡
+ * ËµÃ÷£º
+ * out_file_name:ÏÂÔØµ½µÄÍ¼Æ¬µÄÃû×Ö£¨Ò²¿ÉÒÔÊÇÏà¶ÔÂ·¾¶»ò¾ø¶ÔÂ·¾¶£©
+ * Ìá¹©ÏàÓ¦Í¼Æ¬µÄµØÖ·£¬¼´¿ÉÏÂÔØ¶ÔÓ¦µÄÍ¼Æ¬
  */
 class DownloadPic
 {
@@ -24,37 +24,37 @@ class DownloadPic
 		RandomAccessFile[] outArr = new RandomAccessFile[down_thread_num];
 		try
 		{
-			//åˆ›å»ºä¸€ä¸ªurlå¯¹è±¡
+			//´´½¨Ò»¸öurl¶ÔÏó
 			URL realurl = new URL(url);
 			isArr[0] = realurl.openStream();
 			long fileLen = getFileLength(realurl);
-			//ä»¥è¾“å‡ºæ–‡ä»¶ååˆ›å»ºç¬¬ä¸€ä¸ªRandomAccessFileè¾“å‡ºæµ
+			//ÒÔÊä³öÎÄ¼şÃû´´½¨µÚÒ»¸öRandomAccessFileÊä³öÁ÷
 			outArr[0] = new RandomAccessFile(out_file_name,"rw");
-			//åˆ›å»ºä¸€ä¸ªä¸ä¸‹è½½èµ„æºå¤§å°ç›¸åŒçš„ç©ºæ–‡ä»¶
+			//´´½¨Ò»¸öÓëÏÂÔØ×ÊÔ´´óĞ¡ÏàÍ¬µÄ¿ÕÎÄ¼ş
 			for (int i = 0;i < fileLen;i++)
 			{
 				outArr[0].write(0);
 			}
-			//æ¯ä¸ªçº¿ç¨‹åº”è¯¥ä¸‹è½½çš„å­—èŠ‚æ•°
+			//Ã¿¸öÏß³ÌÓ¦¸ÃÏÂÔØµÄ×Ö½ÚÊı
 			long numPerThread = fileLen / down_thread_num;
-			//æ•´ä¸ªä¸‹è½½èµ„æºæ•´é™¤åå‰©ä½™çš„ä½™æ•°
+			//Õû¸öÏÂÔØ×ÊÔ´Õû³ıºóÊ£ÓàµÄÓàÊı
 			long left = fileLen % down_thread_num;
 			for (int i = 0;i < down_thread_num; i++)
 			{
-				//ä¸ºæ¯ä¸ªçº¿ç¨‹æ‰“å¼€ä¸€ä¸ªè¾“å…¥æµã€ä¸€ä¸ªRandomAccessFileå¯¹è±¡ï¼Œè®©æ¯ä¸ªçº¿ç¨‹åˆ†åˆ«è´Ÿè´£ä¸‹è½½èµ„æºçš„ä¸åŒéƒ¨åˆ†
+				//ÎªÃ¿¸öÏß³Ì´ò¿ªÒ»¸öÊäÈëÁ÷¡¢Ò»¸öRandomAccessFile¶ÔÏó£¬ÈÃÃ¿¸öÏß³Ì·Ö±ğ¸ºÔğÏÂÔØ×ÊÔ´µÄ²»Í¬²¿·Ö
 				if (i != 0)
 				{
 					isArr[i] = realurl.openStream();
 					outArr[i] = new RandomAccessFile(out_file_name,"rw");
 				}
-				//åˆ†åˆ«å¯åŠ¨å¤šä¸ªçº¿ç¨‹æ¥ä¸‹è½½ç½‘ç»œèµ„æº
+				//·Ö±ğÆô¶¯¶à¸öÏß³ÌÀ´ÏÂÔØÍøÂç×ÊÔ´
 				if (i == down_thread_num - 1)
 				{
 					new DownThread(i * numPerThread,(i+1)*numPerThread+left,isArr[i],outArr[i]).start();
 				}
 				else
 				{
-					//æ¯ä¸ªçº¿ç¨‹è´Ÿè´£ä¸‹è½½ä¸€å®šçš„å­—èŠ‚
+					//Ã¿¸öÏß³Ì¸ºÔğÏÂÔØÒ»¶¨µÄ×Ö½Ú
 					new DownThread(i * numPerThread,(i+1)*numPerThread,isArr[i],outArr[i]).start();
 				}
 			}
@@ -64,20 +64,20 @@ class DownloadPic
 			ex.printStackTrace();
 		}
 	}
-	//è·å¾—è¿œç¨‹èµ„æºçš„å¤§å°	public static long getFileLength(URL url) throws Exception
+	//»ñµÃÔ¶³Ì×ÊÔ´µÄ´óĞ¡	public static long getFileLength(URL url) throws Exception
 	public static long getFileLength(URL url) throws Exception
 	{
 		URLConnection con = url.openConnection();
 		return con.getContentLength();
 	}
-	//å†…éƒ¨ç±»ï¼Œç”¨æ¥ä¸‹è½½å›¾ç‰‡çš„çº¿ç¨‹
+	//ÄÚ²¿Àà£¬ÓÃÀ´ÏÂÔØÍ¼Æ¬µÄÏß³Ì
 	private class DownThread extends Thread
 	{
-		private final int buff_len = 32;      //å®šä¹‰å­—èŠ‚é•¿åº¦
-		private long start;                   //å®šä¹‰ä¸‹è½½çš„èµ·å§‹ç‚¹
-		private long end;                     //å®šä¹‰ä¸‹è½½çš„ç»“æŸç‚¹
-		private InputStream is;               //ä¸‹è½½èµ„æºå¯¹åº”çš„è¾“å…¥æµ
-		private RandomAccessFile raf;         //å°†ä¸‹è½½åˆ°çš„èµ„æºè¾“å…¥åˆ°rafä¸­
+		private final int buff_len = 32;      //¶¨Òå×Ö½Ú³¤¶È
+		private long start;                   //¶¨ÒåÏÂÔØµÄÆğÊ¼µã
+		private long end;                     //¶¨ÒåÏÂÔØµÄ½áÊøµã
+		private InputStream is;               //ÏÂÔØ×ÊÔ´¶ÔÓ¦µÄÊäÈëÁ÷
+		private RandomAccessFile raf;         //½«ÏÂÔØµ½µÄ×ÊÔ´ÊäÈëµ½rafÖĞ
 		public DownThread(long start,long end,InputStream is,RandomAccessFile raf)
 		{
 			this.start = start;
@@ -89,7 +89,7 @@ class DownloadPic
 		{
 			try
 			{
-				is.skip(start);     //çºªå½•æŒ‡é’ˆå‘å‰ç§»åŠ¨startä¸ªå­—ç¬¦
+				is.skip(start);     //¼ÍÂ¼Ö¸ÕëÏòÇ°ÒÆ¶¯start¸ö×Ö·û
 				raf.seek(start);
 				byte[] buff = new byte[buff_len];
 				long contentLen = end - start;

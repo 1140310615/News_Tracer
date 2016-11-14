@@ -9,8 +9,14 @@ import com.hyc.news.newsVo;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 public class dateProcess 
+/*
+ * 计算访问密度的分母
+ */
 {
 	public static int getE(newsVo vo)
+	/*
+	 * 距离今天的日期数
+	 */
 	{
 		String d = vo.getDate().toString();
 		String formatDate = null;  
