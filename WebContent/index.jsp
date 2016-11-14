@@ -126,6 +126,7 @@
 					String in = request.getParameter("chioce");
 					if (in != null)
 						index = Integer.parseInt(in)-1;
+					index = index * 5;
 					int end = index + 10;
 					end = end < b?end : b;
 					String type = null;
@@ -140,14 +141,15 @@
 						String date = vo.getDate().toString();
 						%>
 						<div class="box">
-						<a href="showBody.action?url=<%=url %>"><h3 class="vid-name"><%=name%></h3></a>
+						<a href="showBody.action?url=<%=url %>"><h6 class="vid-name"><%=name%></h6></a>
 						<div class="wrap-vid">
 							<div class="zoom-container">
 								<div class="zoom-caption"></div>
 								<img src="<%=imgUrl %>" />
 							</div>
-							<p><%=date %></p><br>
-							<p><%=vo.getKeywords() %>
+							<p><br>标签:<%=vo.getKeywords() %><br>
+							日期：<%=date %><br>
+							浏览：<%=vo.getCount() %></p>
 						</div>
 					</div>
 					<hr class="line">

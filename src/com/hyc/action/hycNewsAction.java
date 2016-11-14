@@ -191,7 +191,6 @@ public class hycNewsAction extends ActionSupport
 	
 	public String select()
 	{
-		
 		return "success";
 	}
 

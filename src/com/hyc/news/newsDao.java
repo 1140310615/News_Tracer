@@ -19,7 +19,8 @@ public class newsDao
 			if (con == null)
 			{
 				Class.forName("com.mysql.jdbc.Driver");
-				con = DriverManager.getConnection("jdbc:mysql://localhost:3306/news?characterEncoding=utf8","root","123456");
+				con = DriverManager.getConnection("jdbc:mysql://w.rdc.sae.sina.com.cn/app_heyongchaosss?characterEncoding=utf8","1omo1n521n","2h3314w41lh5z5jwm1wh0lmzj500xwhh4j411y2z");
+				//con = DriverManager.getConnection("jdbc:mysql://localhost:3306/news?characterEncoding=utf8","root","123456");
 			}
 		}
 		catch(Exception ex)
