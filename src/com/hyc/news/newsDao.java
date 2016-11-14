@@ -15,7 +15,7 @@ public class newsDao
 {
 	private static Connection con = null;
 	
-	public static void openConnection()
+	public void openConnection()
 	{
 		try
 		{
@@ -29,7 +29,7 @@ public class newsDao
 		}
 	}
 	
-	public static void closeConnection()
+	public void closeConnection()
 	{
 		try
 		{
