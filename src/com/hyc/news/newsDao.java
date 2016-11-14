@@ -19,9 +19,9 @@ public class newsDao
 	{
 		try
 		{
-      String URL ="jdbc:mysql://localhost:3306/news";
+      String URL ="jdbc:mysql://w.rdc.sae.sina.com.cn:3307/app_heyongchaosss";
       Class.forName("com.mysql.jdbc.Driver");
-      con = DriverManager.getConnection(URL, "root", "1234");
+      con = DriverManager.getConnection(URL, "1omo1n521n", "2h3314w41lh5z5jwm1wh0lmzj500xwhh4j411y2z");
 		}
 		catch(Exception ex)
 		{
