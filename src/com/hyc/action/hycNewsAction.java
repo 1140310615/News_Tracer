@@ -117,7 +117,7 @@ public class hycNewsAction extends ActionSupport
 		dao.openConnection();
 		list = dao.selectByType(type);
 		//list = dao.selectAll();
-		list = new newsProcess().newsSort(list);
+		list = new newsProcess().sortByDate(list);
 		dao.closeConnection();
 		return "success";
 	}

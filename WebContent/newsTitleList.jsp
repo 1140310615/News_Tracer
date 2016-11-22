@@ -108,7 +108,9 @@
 									<div class="zoom-caption"></div>
 									<img src="images/9.jpg" />
 								</div>
-								<p></p>
+															<p><br>标签:<%=vo.getKeywords() %><br>
+							日期：<%=vo.getDate() %><br>
+							浏览：<%=vo.getCount() %></p>
 							</div>
 						</div>
 						<hr class="line">
