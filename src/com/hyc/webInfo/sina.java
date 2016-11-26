@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class sina 
+/*
+ * 新浪网结构
+ */
 {
 	private final tuple5 news = new tuple5(classifyName.news,"http://news.sina.com.cn","ul","class","list_14");
 	//private final tuple5 mili = new tuple5(classifyName.mili,"http://mil.news.sina.com.cn","ul","class","green-dot");
@@ -11,7 +14,7 @@ public class sina
 	private final tuple5 ent  = new tuple5(classifyName.ent,"http://ent.sina.com.cn","h2","","");
 	private final tuple5 sport= new tuple5(classifyName.sport,"http://sports.sina.com.cn","ul","class","list01");
 	private final tuple5 yingchao = new tuple5(classifyName.yingchao,"http://sports.sina.com.cn/g/premierleague/","ul","","");
-	public List<String> newsList = new ArrayList<String>();     //鐖笅鏉ョ殑鏂伴椈閾炬帴
+	public List<String> newsList = new ArrayList<String>();     //爬下来的新闻链接
 	public List<String> miliList = new ArrayList<String>();
 	public List<String> techList = new ArrayList<String>();
 	public List<String> entList = new ArrayList<String>();
@@ -34,11 +37,11 @@ public class sina
 
 class tuple5
 {
-	classifyName name;        //鏂伴椈鍒嗙被
-	private String url;       //鏂伴椈url
-	private String tag;       //杩囨护鏍囩
-	private String filter;    //杩囨护鍣�
-	private String filValue;  //杩囨护鍣ㄥ��
+	classifyName name;        //新闻分类
+	private String url;       //新闻url
+	private String tag;       //过滤标签
+	private String filter;    //过滤噿
+	private String filValue;  //过滤器忿
 	public tuple5(classifyName name,String url,String tag,String filter,String filValue)
 	{
 		this.name = name;
@@ -70,6 +73,6 @@ class tuple5
 }
 enum classifyName
 {
-	//鏂伴椈銆佸啗浜嬨�佺鎶�銆佸ū涔愩�佷綋鑲层�佸崥瀹�
+	//新闻、军事㿁科抿、娱乐㿁体育㿁博宿
 	news,mili,tech,ent,sport,yingchao;     
 }

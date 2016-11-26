@@ -45,8 +45,8 @@ class newsGet
 	public newsGet()
 	{
 		Calendar calendar = Calendar.getInstance();
-		calendar.set(Calendar.HOUR_OF_DAY, 7);
-		calendar.set(Calendar.MINUTE, 30);
+		calendar.set(Calendar.HOUR_OF_DAY, 15);
+		calendar.set(Calendar.MINUTE, 44);
 		calendar.set(Calendar.SECOND,00);
 		Date t = calendar.getTime();    //得出执行任务的时间
 		Timer myTimer = new Timer();
@@ -98,6 +98,7 @@ class newsGet
 				vo.setKeywords(myCrawler.getKeywords(url));
 				vo.setDate(getDate(url));
 				vo.setType(type);
+				System.out.println(vo.getName());
 				dao.insertNews(vo);
 			}
 			try {

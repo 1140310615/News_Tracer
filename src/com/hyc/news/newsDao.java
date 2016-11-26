@@ -4,24 +4,24 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-
+/*
+ * 数据库操作
+ * */
 public class newsDao 
 {
-	private Connection con;
+	private static Connection con = null;
 	
 	public void openConnection()
 	{
 		try
 		{
-			if (con == null)
-			{
-				Class.forName("com.mysql.jdbc.Driver");
-				con = DriverManager.getConnection("jdbc:mysql://w.rdc.sae.sina.com.cn/app_heyongchaosss?characterEncoding=utf8","1omo1n521n","2h3314w41lh5z5jwm1wh0lmzj500xwhh4j411y2z");
-				//con = DriverManager.getConnection("jdbc:mysql://localhost:3306/news?characterEncoding=utf8","root","123456");
-			}
+      String URL ="jdbc:mysql://localhost:3306/news?characterEncoding=utf8";
+      Class.forName("com.mysql.jdbc.Driver");
+      con = DriverManager.getConnection(URL, "root", "123456");
 		}
 		catch(Exception ex)
 		{
@@ -43,29 +43,45 @@ public class newsDao
 			ex.printStackTrace();
 		}
 	}
+	public boolean isExist(String url)
+	{
+	  String sql = "select name from newslist where url = ?";
+	  PreparedStatement pre_t = null;
+	  ResultSet rs = null;
+    try
+    {
+      pre_t = con.prepareStatement(sql);
+      pre_t.setString(1,url);
+      rs = pre_t.executeQuery();
+      if(rs.next()){
+        return true;
+      }
+      return false;
+    }
+    catch(Exception ex)
+    {
+      ex.printStackTrace();
+      return false;
+    } finally{
+      try{
+        rs.close();
+        pre_t.close();
+      }
+      catch (SQLException e){
+        e.printStackTrace();
+      }
+    }
+	}
 	
 	public boolean insertNews(newsVo vo)
+	/*
+	 * 插入时设置去重
+	 */
 	{
-		String sql = "select name from newslist where url = ?";
-		try
-		{
-			PreparedStatement pre_t = con.prepareStatement(sql);
-			pre_t.setString(1,vo.getUrl());
-			ResultSet rs = pre_t.executeQuery();
-			if(rs.next()){
-				rs.close();
-				pre_t.close();
-				return false;
-			}
-			rs.close();
-			pre_t.close();
+		if (isExist(vo.getUrl())){
+		  return false;
 		}
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-			return false;
-		}
-		sql = "insert into newsList values(?,?,?,?,?,?)";
+		String  sql = "insert into newsList values(?,?,?,?,?,?)";
 		try
 		{
 			int count = 0;
@@ -172,6 +188,9 @@ public class newsDao
 		}
 	}
 	public boolean add(String url)
+	/*
+	 * 访问链接访问量加一
+	 * */
 	{
 		String sql = "select * from newsList where url=?";
 		try

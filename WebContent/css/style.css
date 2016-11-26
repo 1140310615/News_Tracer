@@ -99,11 +99,6 @@ body.sub-page .logo {margin: 110px 0 80px;background: url(../images/bg.jpg) fixe
 #menu ul.nav li.dropdown a{border-top-left-radius: 5px;border-top-right-radius: 5px;border-bottom-right-radius: 0px;border-bottom-left-radius: 0px;}
 #menu .nav > li > a:hover, #menu .nav > li > a:focus{background-color: #fff;color:#000;}
 
-#menu .top-social{background-color:#505052;padding: 5px;font-size: 20px; text-align: center;}
-#menu ul.top-social{margin: 0;}
-#menu ul.top-social  li{height: 38px; width: 38px; }
-#menu ul.top-social a i{color: #fff;line-height: 1.9;height: 38px; width: 38px;border-radius: 50%;background-color: #252628;}
-#menu ul.top-social a i:hover{background-color:#fff;color: #000;}
 
 #menu .btn-navbar {font-size: 20px;color: #FFF;padding: 5px 15px;float: right;border: 3px solid #fff;}
 

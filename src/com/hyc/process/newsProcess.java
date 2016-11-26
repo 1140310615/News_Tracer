@@ -6,7 +6,7 @@ import java.util.Comparator;
 import com.hyc.news.*;
 public class newsProcess 
 {
-/*
+/* 相似度去重
  * new sort
  */
 	public ArrayList<newsVo> newsSort(ArrayList<newsVo> list)

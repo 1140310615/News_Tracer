@@ -14,12 +14,21 @@ public class hycNewsAction extends ActionSupport
 	private String name;
 	private String url;
 	private String searchKey;
+	private String newsurl;
 	public static ArrayList<newsVo> nList;
 	private ArrayList<String> imgList;
 	private ArrayList<newsVo> list;
 	public static ArrayList<newsVo> recomList;
 	public static ArrayList<newsVo> topList;
 	private String choice;
+	public void setNewsurl(String url)
+	{
+		this.newsurl = url;
+	}
+	public String getNewsurl()
+	{
+		return this.newsurl;
+	}
 	public void setTopList(ArrayList<newsVo> list)
 	{
 		topList = list;
@@ -124,6 +133,7 @@ public class hycNewsAction extends ActionSupport
 	
 	public String showBody()
 	{
+		this.setNewsurl(url);
 		crawler newsCra = new crawler();
 		name = newsCra.getHead(url);   
 		list = newsCra.getText(url);

@@ -13,7 +13,6 @@ import com.hyc.news.newsDao;
 
 public class newsDeleteTimer implements ServletContextListener 
 {
-
 	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
 		// TODO Auto-generated method stub

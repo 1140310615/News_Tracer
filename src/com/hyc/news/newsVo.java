@@ -1,6 +1,9 @@
 package com.hyc.news;
 
 import java.sql.Date;
+/*
+ * 数据对象
+ */
 
 public class newsVo 
 {

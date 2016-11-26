@@ -43,6 +43,7 @@
 </head>
 
 <body>
+<a href="login.jsp"><p>&nbsp;&nbsp;&nbsp;&nbsp;登录／注册</p></a>
 <header>
 	<!--Navigation-->
     <nav id="menu" class="navbar container">
@@ -56,12 +57,14 @@
 			<ul class="nav navbar-nav">
 				</li>
 				<li><a href="recomd.action">首页</a></li>
-				<li><a href="newsType.action?type=news"">综合</a>
-				</li>
-				<li><a href="newsType.action?type=ent">娱乐</a>
-				</li>
+				<li><a href="newsType.action?type=news"">综合</a></li>
+				<li><a href="newsType.action?type=ent">娱乐</a></li>
 				<li><a href="newsType.action?type=sport"> 运动</a></li>
 				<li><a href="newsType.action?type=tech"> 科技</a></li>
+				<li><a href="#">国际</a></li>
+				<li><a href="#">社会</a></li>
+				<li><a href="#">军事</a></li>
+				<li><a href="#">新鲜事</a></li>
 
 			</ul>
 			<ul class="list-inline navbar-right">
