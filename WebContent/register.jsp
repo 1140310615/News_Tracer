@@ -8,7 +8,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>	
 <head>
-<title>Login</title>
+
+<title>Register</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <meta name="keywords" content="Flat Dark Web Login Form Responsive Templates, Iphone Widget Template, Smartphone login forms,Login form, Widget Template, Responsive Templates, a Ipad 404 Templates, Flat Responsive Templates" />
@@ -32,16 +33,18 @@
  <div class="login">
  	<h2>&nbsp</h2>
 	<div class="login-top" style="filter:alpha(opacity=10);">
-		<h1>登录</h1>
-		<s:form action="login" method="post" >
-			<s:textfield name="userName" type="text" aria-label="姓名" placeholder="姓名"/>
+		<h1>注册</h1>
+		<s:form action="register_register" method="post" >
+			<s:textfield name="userName" id="userName" type="text" aria-label="姓名" placeholder="姓名"/>
 			<s:textfield name="password" type="password" aria-label="密码" placeholder="密码"/>
-		
+			<s:textfield name="confrimPassword" type="password" aria-label="确认密码" placeholder="确认密码"/>
 		<div class="forgot">
-	    	<input type="submit" value="登录" >
-	    	 </div>
+	    	<input type="submit" value="注册" >
+	    </div>
+		
 		</s:form>
-
+		
+	    
 	</div>
 </div>	
 

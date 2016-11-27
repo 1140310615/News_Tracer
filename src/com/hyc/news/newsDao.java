@@ -19,9 +19,9 @@ public class newsDao
 	{
 		try
 		{
-      String URL ="jdbc:mysql://localhost:3306/news?characterEncoding=utf8";
+      String URL ="jdbc:mysql://localhost:3306/app_heyongchaosss?characterEncoding=utf8";
       Class.forName("com.mysql.jdbc.Driver");
-      con = DriverManager.getConnection(URL, "root", "123456");
+      con = DriverManager.getConnection(URL, "root", "50605060");
 		}
 		catch(Exception ex)
 		{

@@ -43,7 +43,9 @@
 </head>
 
 <body>
-<a href="login.jsp"><p>&nbsp;&nbsp;&nbsp;&nbsp;登录／注册</p></a>
+<a href="login.jsp">登录</a>&nbsp;&nbsp;
+<a href="register.jsp">注册</a>&nbsp;&nbsp;
+<!-- a href='<s:url action="userList" method="list"/>'>用户列表</a>&nbsp;&nbsp;-->
 <header>
 	<!--Navigation-->
     <nav id="menu" class="navbar container">
