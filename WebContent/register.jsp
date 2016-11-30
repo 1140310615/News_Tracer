@@ -37,12 +37,12 @@
 	<div class="login-top" style="filter:alpha(opacity=10);">
 		<h1>注册</h1>
 
-		<s:form action="register_register" method="post" >
+		<s:form action="user_register"  method="post" onsubmit="javascript:return checkUserName()">
 			<s:textfield name="userName" id="userName" maxlength="30" autofocus="autofocus" type="text" aria-label="用户名" placeholder="用户名" onblur="checkUserName()"/>			
 			<s:textfield name="password" id="password" type="password" maxlength="20" aria-label="密码" placeholder="密码" />
 			<s:textfield name="confirmPassword" id="confirmPassword" type="password" aria-label="确认密码" placeholder="确认密码" />
 		<div class="forgot">
-	    	<input id="btn" type="submit" value="注册" onmouseover="checkpassword()" >
+	    	<input id="btn" type="submit" value="注册">
 	    </div>
 		
 		</s:form>

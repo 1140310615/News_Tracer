@@ -40,11 +40,16 @@
 	
 	<!-- Core JavaScript Files -->  	 
     <script src="js/bootstrap.min.js"></script>
+
+    
 </head>
 
 <body>
+
 <a href="login.jsp">登录</a>&nbsp;&nbsp;
+<a href='<s:url action="user_logout"/>'>登出</a>&nbsp;&nbsp;
 <a href="register.jsp">注册</a>&nbsp;&nbsp;
+<h5>${sessionScope.userName}</h5>
 <!-- a href='<s:url action="userList" method="list"/>'>用户列表</a>&nbsp;&nbsp;-->
 <header>
 	<!--Navigation-->

@@ -33,7 +33,7 @@
  	<h2>&nbsp</h2>
 	<div class="login-top" style="filter:alpha(opacity=10);">
 		<h1>登录</h1>
-		<s:form action="login" method="post" >
+		<s:form action="user_login" method="post" >
 			<s:textfield name="userName" type="text" aria-label="姓名" placeholder="姓名"/>
 			<s:textfield name="password" type="password" aria-label="密码" placeholder="密码"/>
 		
