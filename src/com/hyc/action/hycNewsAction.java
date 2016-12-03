@@ -135,8 +135,11 @@ public class hycNewsAction extends ActionSupport
 	{
 		this.setNewsurl(url);
 		crawler newsCra = new crawler();
-		name = newsCra.getHead(url);   
-		list = newsCra.getText(url);
+		name = newsCra.getHead(url); 
+		if (url.indexOf("qq") != -1)
+			list = newsCra.getTencentText(url);
+		else
+			list = newsCra.getText(url);
 		imgList = newsCra.getImg(url);
 		
 		newsDao dao = new newsDao();

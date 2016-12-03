@@ -20,6 +20,7 @@ import com.hyc.process.dateProcess;
 import com.hyc.process.newsProcess;
 import com.hyc.webInfo.crawler;
 import com.hyc.webInfo.sina;
+import com.hyc.webInfo.tencent;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 public class newsGetTimer implements ServletContextListener 
@@ -45,8 +46,8 @@ class newsGet
 	public newsGet()
 	{
 		Calendar calendar = Calendar.getInstance();
-		calendar.set(Calendar.HOUR_OF_DAY, 15);
-		calendar.set(Calendar.MINUTE, 44);
+		calendar.set(Calendar.HOUR_OF_DAY, 22);
+		calendar.set(Calendar.MINUTE,06);
 		calendar.set(Calendar.SECOND,00);
 		Date t = calendar.getTime();    //得出执行任务的时间
 		Timer myTimer = new Timer();
@@ -74,6 +75,19 @@ class newsGet
 				System.out.println("运动");
 				getNews(mySina.techList,"tech");
 				
+				tencent myTencent = new tencent();
+				try {
+					myTencent.getUrl();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				System.out.println("腾讯国际");
+				getNews(myTencent.interList,"inter");
+				System.out.println("腾讯军事");
+				getNews(myTencent.miliList,"mili");
+//				System.out.println("腾讯社会");
+//				getNews(myTencent.socList,"society");
 				System.out.println("结束");
 					//getNews(mySina.yingchaoList,"yingchao");
 			}
@@ -89,17 +103,19 @@ class newsGet
 		for (int i=0;i < entList.size();i++)
 		{
 			String url = entList.get(i);
-			
 			vo.setUrl(url);
-			if (vo.getUrl().endsWith("html"))
+			String date = getDate(url);
+			if (date.equals(""))
+				date = getTencentDate(url);
+			if (vo.getUrl().endsWith("html") || vo.getUrl().endsWith("htm"))
 			{
 				crawler myCrawler = new crawler();
 				vo.setName(myCrawler.getHead(url));
 				vo.setKeywords(myCrawler.getKeywords(url));
-				vo.setDate(getDate(url));
+				vo.setDate(date);
 				vo.setType(type);
-				System.out.println(vo.getName());
 				dao.insertNews(vo);
+				//System.out.println(dao.insertNews(vo));
 			}
 			try {
 				Thread.sleep(100);
@@ -119,6 +135,25 @@ class newsGet
 			Matcher m = p.matcher(temp[i]);
 			if (m.matches())
 				return temp[i];
+		}
+		return "";
+	}
+	private String getTencentDate(String str)
+	{
+		String[] temp = str.split("/");
+		Pattern p = Pattern.compile("\\d\\d\\d\\d\\d\\d\\d\\d");
+		for (int i = 0;i < temp.length;i++)
+		{
+			Matcher m = p.matcher(temp[i]);
+			if (m.matches())
+			{
+				String date = "";
+				String year = temp[i].substring(0, 4);
+				String month= temp[i].substring(4, 6);
+				String day  = temp[i].substring(6);
+				date = year + "-" + month + "-" + day;
+				return date;
+			}
 		}
 		return "";
 	}

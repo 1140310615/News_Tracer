@@ -60,6 +60,10 @@
 				</li>
 				<li><a href="newsType.action?type=sport"> 运动</a></li>
 				<li><a href="newsType.action?type=tech"> 科技</a></li>
+				<li><a href="newsType.action?type=inter">国际</a></li>
+				
+				<li><a href="newsType.action?type=mili">军事</a></li>
+				<li><a href="#">新鲜事</a></li>
 			</ul>
 			<ul class="list-inline navbar-right">
 				<li>

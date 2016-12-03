@@ -29,14 +29,18 @@
  
  
  
-    	<action name = "register_register"  class="com.yyl.user.RegisterAction" method="register">
+    	<action name = "user_register"  class="com.yyl.user.User" method="register">
     		<result name="invalid.token">/register.jsp</result>
     		<result name="input">/register.jsp</result>
     		<result name="success">/login.jsp</result>
     	</action>
     	
-    	<action name="login" class="com.yyl.user.LoginAction" method="login">
+    	<action name="user_login" class="com.yyl.user.User" method="login">
     		<result name="input">/login.jsp</result>
+    		<result name="success">/skip.jsp</result>
+    	</action>
+    	
+    	<action name="user_logout" class="com.yyl.user.User" method="logout">
     		<result name="success">/skip.jsp</result>
     	</action>
     	
