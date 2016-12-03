@@ -33,18 +33,20 @@
  <div class="login">
  	<h2>&nbsp</h2>
 	<div class="login-top" style="filter:alpha(opacity=10);">
+	<center>
 		<h1>注册</h1>
 		<s:form action="register_register" method="post" >
 			<s:textfield name="userName" id="userName" type="text" aria-label="姓名" placeholder="姓名"/>
 			<s:textfield name="password" type="password" aria-label="密码" placeholder="密码"/>
 			<s:textfield name="confrimPassword" type="password" aria-label="确认密码" placeholder="确认密码"/>
+			
 		<div class="forgot">
 	    	<input type="submit" value="注册" >
 	    </div>
 		
 		</s:form>
 		
-	    
+	    </center>
 	</div>
 </div>	
 
