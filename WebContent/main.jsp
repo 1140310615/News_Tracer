@@ -126,8 +126,11 @@
 						%><p><%=text %></p><% 
 					}
 				%>
-<p><a href="<s:property value="newsurl"/>">阅读原文</a></p>
+				
+<p><span><a href="<s:property value="newsurl"/>">阅读原文</a></span> <span style="float:right"><a href="search.action?searchKey=<s:property value="name"/>">延伸阅读</a></span></p>
+
 						</div>
+						
 					</div>
 				</div>
 			</div>

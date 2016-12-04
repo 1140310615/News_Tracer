@@ -90,7 +90,7 @@ public class newsProcess
 		int s = newsProcess.getLevenshteinDistance(str1, str2);
 		int c = (a + b)/2;
 		double similarity = s/(double)c;
-		if (similarity < 0.3)
+		if (similarity < 0.7)
 			return true;
 		else
 			return false;

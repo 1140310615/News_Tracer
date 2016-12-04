@@ -167,7 +167,9 @@ public class hycNewsAction extends ActionSupport
 			newsVo vo = temp.get(i);
 			String str1 = vo.getKeywords();
 			String str2 = vo.getName();
-			if (str1.indexOf(searchKey)!=-1 || str2.indexOf(searchKey)!=-1)
+			Boolean flag1 = newsProcess.isSimilar(searchKey, str1);
+			Boolean flag2 = newsProcess.isSimilar(searchKey, str2);
+			if (str1.indexOf(searchKey)!=-1 || str2.indexOf(searchKey)!=-1 || flag1==true || flag2==true)
 				list.add(vo);
 		}
 		if (list.size()==0)
