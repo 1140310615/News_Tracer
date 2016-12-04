@@ -138,6 +138,8 @@ public class hycNewsAction extends ActionSupport
 		name = newsCra.getHead(url); 
 		if (url.indexOf("qq") != -1)
 			list = newsCra.getTencentText(url);
+		else if (url.indexOf("sohu") != -1)
+			list = newsCra.getSohuText(url);
 		else
 			list = newsCra.getText(url);
 		imgList = newsCra.getImg(url);
