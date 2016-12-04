@@ -14,12 +14,21 @@ public class hycNewsAction extends ActionSupport
 	private String name;
 	private String url;
 	private String searchKey;
+	private String newsurl;
 	public static ArrayList<newsVo> nList;
 	private ArrayList<String> imgList;
 	private ArrayList<newsVo> list;
 	public static ArrayList<newsVo> recomList;
 	public static ArrayList<newsVo> topList;
 	private String choice;
+	public void setNewsurl(String url)
+	{
+		this.newsurl = url;
+	}
+	public String getNewsurl()
+	{
+		return this.newsurl;
+	}
 	public void setTopList(ArrayList<newsVo> list)
 	{
 		topList = list;
@@ -117,16 +126,22 @@ public class hycNewsAction extends ActionSupport
 		dao.openConnection();
 		list = dao.selectByType(type);
 		//list = dao.selectAll();
-		list = new newsProcess().newsSort(list);
+		list = new newsProcess().sortByDate(list);
 		dao.closeConnection();
 		return "success";
 	}
 	
 	public String showBody()
 	{
+		this.setNewsurl(url);
 		crawler newsCra = new crawler();
-		name = newsCra.getHead(url);   
-		list = newsCra.getText(url);
+		name = newsCra.getHead(url); 
+		if (url.indexOf("qq") != -1)
+			list = newsCra.getTencentText(url);
+		else if (url.indexOf("sohu") != -1)
+			list = newsCra.getSohuText(url);
+		else
+			list = newsCra.getText(url);
 		imgList = newsCra.getImg(url);
 		
 		newsDao dao = new newsDao();
@@ -152,7 +167,9 @@ public class hycNewsAction extends ActionSupport
 			newsVo vo = temp.get(i);
 			String str1 = vo.getKeywords();
 			String str2 = vo.getName();
-			if (str1.indexOf(searchKey)!=-1 || str2.indexOf(searchKey)!=-1)
+			Boolean flag1 = newsProcess.isSimilar(searchKey, str1);
+			Boolean flag2 = newsProcess.isSimilar(searchKey, str2);
+			if (str1.indexOf(searchKey)!=-1 || str2.indexOf(searchKey)!=-1 || flag1==true || flag2==true)
 				list.add(vo);
 		}
 		if (list.size()==0)

@@ -32,13 +32,9 @@ public class crawler
 		try
 		{
 			Parser parser = getParser(url);     //鏋勯�犺В鏋愬櫒
-			System.out.println("url-->1");
 			NodeFilter nodefilter = null;
-			System.out.println("url-->1");
 			nodefilter = new NodeClassFilter(LinkTag.class);
-			System.out.println("url-->1");
 			NodeList nodelist = parser.extractAllNodesThatMatch(nodefilter);
-			System.out.println("url-->2");
 			for (int i = 0;i < nodelist.size();i++)
 			{
 				Node node = nodelist.elementAt(i);
@@ -55,6 +51,11 @@ public class crawler
 						continue;
 					if (strUrl.indexOf("list")!=-1 || strUrl.indexOf("video")!=-1)
 						continue;
+					if (strUrl.indexOf("','")!=-1)
+					{
+						int a = strUrl.indexOf("','");
+						strUrl = strUrl.substring(0, a);
+					}
 					urlList.add(strUrl);
 				}
 			}
@@ -142,6 +143,9 @@ public class crawler
 			return "";
 		}
 		title = title.replaceAll("&quot;", "");
+		int a = title.indexOf("-搜狐");
+		if (a != -1)
+			title = title.substring(0, a);
 		return title;
 	}
 	public ArrayList<String> getImg(String url)
@@ -172,6 +176,74 @@ public class crawler
 			ex.printStackTrace();
 		}
 		return imgList;
+	}
+	public ArrayList<newsVo> getSohuText(String url)
+	{
+		ArrayList<newsVo> list = new ArrayList<newsVo>();
+		try
+		{
+			Parser parser = getParser(url);
+			NodeFilter textFilter = new AndFilter(new TagNameFilter("div"),new HasAttributeFilter("itemprop","articleBody"));
+			NodeList nodelist = parser.extractAllNodesThatMatch(textFilter);
+			String text = "";
+			for (int i = 0;i < nodelist.size();i++)
+			{
+				Node node = nodelist.elementAt(i);
+				NodeList child = node.getChildren();
+				String temp = null;
+				//newsVo vo = new newsVo();
+				for (int j = 0;j < child.size();j++)
+				{
+					Node n = child.elementAt(j);
+					temp = n.toHtml();
+					if (temp == null || temp.indexOf("<p>")==-1)
+						continue;
+					text = n.toPlainTextString();
+					if (text==null || text.equals("\\s+"))
+						continue;
+					newsVo vo = new newsVo();
+					vo.setUrl(text);
+					list.add(vo);
+				}
+			}
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+			return list;
+		}
+		return list;
+	}
+	public ArrayList<newsVo> getTencentText(String url)
+	{
+		ArrayList<newsVo> list = new ArrayList<newsVo>();
+		try
+		{
+			Parser parser = getParser(url);
+			NodeFilter textFilter = new AndFilter(new TagNameFilter("div"),new HasAttributeFilter("id","Cnt-Main-Article-QQ"));
+			NodeList nodelist = parser.extractAllNodesThatMatch(textFilter);
+			String text = "";
+			for (int i = 0;i < nodelist.size();i++)
+			{
+				Node node = nodelist.elementAt(i);
+				NodeList child = node.getChildren();
+				for (int j = 0;j < child.size();j++)
+				{
+					Node n = child.elementAt(j);
+					text = n.toPlainTextString();
+					if (text==null || text.equals(""))
+						continue;
+					newsVo vo = new newsVo();
+					vo.setUrl("     "+text);
+					list.add(vo);
+				}
+			}
+		}
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+			return null;
+		}
+		return list;
 	}
 	public ArrayList<newsVo> getText(String url)
 	{

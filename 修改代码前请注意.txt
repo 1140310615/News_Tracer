@@ -1,0 +1,2 @@
+注意修改meta-inf文件下的context.xml数据库连接
+以及hyc.news.newsDao中的数据库连接

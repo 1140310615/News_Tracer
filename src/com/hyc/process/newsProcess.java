@@ -32,13 +32,41 @@ public class newsProcess
 		return list;
 	}
 	
+	public ArrayList<newsVo> sortByDate(ArrayList<newsVo> list)
+	{
+		if (list.size() == 0 || list.size()==1)
+			return list;
+        Collections.sort(list, new Comparator<newsVo>() 
+        {
+			@Override
+			public int compare(newsVo o1, newsVo o2) 
+			{
+				return o2.getDate().compareTo(o1.getDate());
+//				double a2 = (o2.getCount());
+//				double a1 = (o1.getCount());
+//				// TODO Auto-generated method stub
+//				int a = o2.getDate().compareTo(o1.getDate());
+//				if (a == 0)
+//				{
+//					if (a1 > a2)
+//						return -1;
+//					else
+//						return 1;
+//				}
+//				else
+//					return a;
+			}
+        });
+		return list;
+	}
+
 	public ArrayList<newsVo> top(ArrayList<newsVo> list)
 	{
 		if (list.size() == 0)
 			return list;
         Collections.sort(list, new Comparator<newsVo>() 
         {
-			@Override
+			//@Override
 			public int compare(newsVo o1, newsVo o2) 
 			{
 				double a2 = (o2.getCount());
@@ -62,7 +90,7 @@ public class newsProcess
 		int s = newsProcess.getLevenshteinDistance(str1, str2);
 		int c = (a + b)/2;
 		double similarity = s/(double)c;
-		if (similarity < 0.3)
+		if (similarity < 0.7)
 			return true;
 		else
 			return false;

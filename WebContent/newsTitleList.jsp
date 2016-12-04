@@ -60,6 +60,10 @@
 				</li>
 				<li><a href="newsType.action?type=sport"> 运动</a></li>
 				<li><a href="newsType.action?type=tech"> 科技</a></li>
+				<li><a href="newsType.action?type=inter">国际</a></li>
+				
+				<li><a href="newsType.action?type=mili">军事</a></li>
+				<li><a href="#">新鲜事</a></li>
 			</ul>
 			<ul class="list-inline navbar-right">
 				<li>
@@ -108,7 +112,9 @@
 									<div class="zoom-caption"></div>
 									<img src="images/9.jpg" />
 								</div>
-								<p></p>
+															<p><br>标签:<%=vo.getKeywords() %><br>
+							日期：<%=vo.getDate() %><br>
+							浏览：<%=vo.getCount() %></p>
 							</div>
 						</div>
 						<hr class="line">

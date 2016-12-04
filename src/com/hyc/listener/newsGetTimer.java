@@ -20,6 +20,8 @@ import com.hyc.process.dateProcess;
 import com.hyc.process.newsProcess;
 import com.hyc.webInfo.crawler;
 import com.hyc.webInfo.sina;
+import com.hyc.webInfo.sohu;
+import com.hyc.webInfo.tencent;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 public class newsGetTimer implements ServletContextListener 
@@ -45,8 +47,8 @@ class newsGet
 	public newsGet()
 	{
 		Calendar calendar = Calendar.getInstance();
-		calendar.set(Calendar.HOUR_OF_DAY, 14);
-		calendar.set(Calendar.MINUTE, 41);
+		calendar.set(Calendar.HOUR_OF_DAY, 11);
+		calendar.set(Calendar.MINUTE,26);
 		calendar.set(Calendar.SECOND,00);
 		Date t = calendar.getTime();    //得出执行任务的时间
 		Timer myTimer = new Timer();
@@ -74,6 +76,31 @@ class newsGet
 				System.out.println("运动");
 				getNews(mySina.techList,"tech");
 				
+				tencent myTencent = new tencent();
+				try {
+					myTencent.getUrl();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				System.out.println("腾讯国际");
+				getNews(myTencent.interList,"inter");
+				System.out.println("腾讯军事");
+				getNews(myTencent.miliList,"mili");
+//				System.out.println("腾讯娱乐");
+//				getNews(myTencent.entList,"ent");
+				
+				sohu mySohu = new sohu();
+				try
+				{
+					mySohu.getUrl();
+				}catch(InterruptedException e)
+				{
+					e.printStackTrace();
+				}
+				getNews(mySohu.interList,"inter");
+				getNews(mySohu.miliList,"mili");
+				getNews(mySohu.newsList,"news");
 				System.out.println("结束");
 					//getNews(mySina.yingchaoList,"yingchao");
 			}
@@ -84,21 +111,30 @@ class newsGet
 	private void getNews(List<String> entList,String type)
 	{
 		newsVo  vo  = new newsVo ();
-		newsDao dao = new newsDao();
+		newsDao dao = new newsDao(); 
+		Date ddate = new Date();  
+		String today = DateFormat.getDateInstance(DateFormat.MEDIUM).format(ddate);
+
 		dao.openConnection();
 		for (int i=0;i < entList.size();i++)
 		{
 			String url = entList.get(i);
-			
 			vo.setUrl(url);
-			if (vo.getUrl().endsWith("html"))
+			String date = getDate(url);
+			if (date.equals(""))
+				date = getTencentDate(url);
+			if (date.equals(""))
+				date = today;
+			if (vo.getUrl().endsWith("html") || vo.getUrl().endsWith("htm"))
 			{
 				crawler myCrawler = new crawler();
 				vo.setName(myCrawler.getHead(url));
 				vo.setKeywords(myCrawler.getKeywords(url));
-				vo.setDate(getDate(url));
+				vo.setDate(date);
 				vo.setType(type);
-				dao.insertNews(vo);
+				boolean flag = dao.insertNews(vo);
+				System.out.println(flag);
+				//System.out.println(dao.insertNews(vo));
 			}
 			try {
 				Thread.sleep(100);
@@ -118,6 +154,25 @@ class newsGet
 			Matcher m = p.matcher(temp[i]);
 			if (m.matches())
 				return temp[i];
+		}
+		return "";
+	}
+	private String getTencentDate(String str)
+	{
+		String[] temp = str.split("/");
+		Pattern p = Pattern.compile("\\d\\d\\d\\d\\d\\d\\d\\d");
+		for (int i = 0;i < temp.length;i++)
+		{
+			Matcher m = p.matcher(temp[i]);
+			if (m.matches())
+			{
+				String date = "";
+				String year = temp[i].substring(0, 4);
+				String month= temp[i].substring(4, 6);
+				String day  = temp[i].substring(6);
+				date = year + "-" + month + "-" + day;
+				return date;
+			}
 		}
 		return "";
 	}

@@ -74,5 +74,5 @@ class tuple5
 enum classifyName
 {
 	//新闻、军事㿁科抿、娱乐㿁体育㿁博宿
-	news,mili,tech,ent,sport,yingchao;     
+	news,mili,tech,ent,sport,yingchao,inter,society;
 }

@@ -54,14 +54,15 @@
 		</div>
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
 			<ul class="nav navbar-nav">
-				</li>
 				<li><a href="recomd.action">首页</a></li>
-				<li><a href="newsType.action?type=news"">综合</a>
-				</li>
-				<li><a href="newsType.action?type=ent">娱乐</a>
-				</li>
+				<li><a href="newsType.action?type=news"">综合</a></li>
+				<li><a href="newsType.action?type=ent">娱乐</a></li>
 				<li><a href="newsType.action?type=sport"> 运动</a></li>
 				<li><a href="newsType.action?type=tech"> 科技</a></li>
+				<li><a href="newsType.action?type=inter">国际</a></li>
+				
+				<li><a href="newsType.action?type=mili">军事</a></li>
+				<li><a href="#">新鲜事</a></li>
 
 			</ul>
 						<ul class="list-inline navbar-right">
@@ -125,8 +126,11 @@
 						%><p><%=text %></p><% 
 					}
 				%>
+				
+<p><span><a href="<s:property value="newsurl"/>">阅读原文</a></span> <span style="float:right"><a href="search.action?searchKey=<s:property value="name"/>">延伸阅读</a></span></p>
 
 						</div>
+						
 					</div>
 				</div>
 			</div>

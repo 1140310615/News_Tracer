@@ -5,6 +5,7 @@
   
 <struts>  
     <package name="newsIntegration" extends="struts-default">  
+    
         <action name="Hello" class="com.hyc.action.testAction" method="execute">  
             <result name="success">/index.jsp</result>  
         </action>       
@@ -25,5 +26,24 @@
     	<action name="select" class="com.hyc.action.hycNewsAction" method="select">
     		<result name="success">/index.jsp</result>
     	</action>
+ 
+ 
+ 
+    	<action name = "user_register"  class="com.yyl.user.User" method="register">
+    		<result name="invalid.token">/register.jsp</result>
+    		<result name="input">/register.jsp</result>
+    		<result name="success">/login.jsp</result>
+    	</action>
+    	
+    	<action name="user_login" class="com.yyl.user.User" method="login">
+    		<result name="input">/login.jsp</result>
+    		<result name="success">/skip.jsp</result>
+    	</action>
+    	
+    	<action name="user_logout" class="com.yyl.user.User" method="logout">
+    		<result name="success">/skip.jsp</result>
+    	</action>
+    	
+    	<action name="userCheck" class="com.yyl.user.UserCheckAction" method="userCheck"/>
     </package>  
 </struts>
