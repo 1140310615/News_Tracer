@@ -139,8 +139,33 @@ public class DbUtils {
 			closeConn(conn);
 		}
 		return result;
-		
 	}
+	
+	 public static int findnum(String userName) throws Exception{
+	    int result = 0;
+	    String sql = "select num from userList where userName = ?";
+	    List<Object> paramList = new ArrayList<Object>();
+	    paramList.add(userName);
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    try{
+	      conn = DbUtils.getConnection();
+	      pstmt = DbUtils.getPrepareStatement(conn, sql);
+	      setPreparedStatementParam(pstmt, paramList);
+	      rs = getResultSet(pstmt);
+	      if(rs.next()){
+	        result = rs.getInt(1);
+	      }
+	    }catch (Exception e){
+	      throw new Exception(e);
+	    }finally{
+	      closeResultSet(rs);
+	      closeStatement(pstmt);
+	      closeConn(conn);
+	    }
+	    return result;
+	  }
 	
 	public static boolean findUser(String userName) throws Exception{
 		boolean result = false;

@@ -1,23 +1,29 @@
 package com.hyc.action;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import com.hyc.news.newsDao;
 import com.hyc.news.newsVo;
 import com.hyc.webInfo.crawler;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.hyc.process.*;
+import com.yyl.user.User;
 
 public class hycNewsAction extends ActionSupport
 {
+  private String review;
 	private String type;
 	private String name;
-	private String url;
+	static private String url;
 	private String searchKey;
 	private String newsurl;
 	public static ArrayList<newsVo> nList;
 	private ArrayList<String> imgList;
 	private ArrayList<newsVo> list;
+	private ArrayList<String> reviewList;
+	private ArrayList<String> authorList;
 	public static ArrayList<newsVo> recomList;
 	public static ArrayList<newsVo> topList;
 	private String choice;
@@ -131,22 +137,47 @@ public class hycNewsAction extends ActionSupport
 		return "success";
 	}
 	
+	public String addReview(){
+	  System.out.println("here"+url);
+	  if (User.isLogin()){
+  	  newsDao dao = new newsDao();
+  	  ActionContext context = ActionContext.getContext();
+      Map<String, Object> session = context.getSession();
+      dao.openConnection();
+      dao.insertReview(url,session.get("userName").toString(),review);
+      dao.closeConnection();
+  	  return "success";
+	  }else return "error";
+	}
+	
 	public String showBody()
 	{
 		this.setNewsurl(url);
-		crawler newsCra = new crawler();
-		name = newsCra.getHead(url); 
-		if (url.indexOf("qq") != -1)
-			list = newsCra.getTencentText(url);
-		else if (url.indexOf("sohu") != -1)
-			list = newsCra.getSohuText(url);
-		else
-			list = newsCra.getText(url);
-		imgList = newsCra.getImg(url);
+		if (url.indexOf("local") != -1){
+		  newsDao dao = new newsDao();
+		  dao.openConnection();
+      list = dao.selectLocalNews(url);
+      imgList = new ArrayList<String>();
+      name = list.get(0).getName(); 
+      dao.closeConnection();
+    }
+    else{
+      crawler newsCra = new crawler();
+		  name = newsCra.getHead(url); 
+	    if (url.indexOf("qq") != -1)
+  			list = newsCra.getTencentText(url);
+  		else if (url.indexOf("sohu") != -1)
+  			list = newsCra.getSohuText(url);
+  		else
+  			list = newsCra.getText(url);
+  		imgList = newsCra.getImg(url);
+	  }
 		
 		newsDao dao = new newsDao();
 		dao.openConnection();
 		dao.add(url);      //访问量加一
+		setReviewList(dao.selectLocalReview(url));
+		setAuthorList(dao.selectLocalAuthor(url));
 		dao.closeConnection();
 	
 		return "success";
@@ -213,7 +244,24 @@ public class hycNewsAction extends ActionSupport
 
 	@Override
 	public String execute() throws Exception {
-		// TODO Auto-generated method stub
 		return "success";
 	}
+  public ArrayList<String> getReviewList() {
+    return reviewList;
+  }
+  public void setReviewList(ArrayList<String> reviewList) {
+    this.reviewList = reviewList;
+  }
+  public ArrayList<String> getAuthorList() {
+    return authorList;
+  }
+  public void setAuthorList(ArrayList<String> authorList) {
+    this.authorList = authorList;
+  }
+  public String getReview() {
+    return review;
+  }
+  public void setReview(String review) {
+    this.review = review;
+  }
 }

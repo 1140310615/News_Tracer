@@ -245,6 +245,7 @@ public class crawler
 		}
 		return list;
 	}
+	
 	public ArrayList<newsVo> getText(String url)
 	{
 		ArrayList<newsVo> body = new ArrayList<newsVo>();

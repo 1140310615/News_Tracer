@@ -62,7 +62,7 @@
 				<li><a href="newsType.action?type=inter">国际</a></li>
 				
 				<li><a href="newsType.action?type=mili">军事</a></li>
-				<li><a href="#">新鲜事</a></li>
+				<li><a href="newsType.action?type=me">新鲜事</a></li>
 
 			</ul>
 						<ul class="list-inline navbar-right">
@@ -126,13 +126,52 @@
 						%><p><%=text %></p><% 
 					}
 				%>
-				
+
 <p><span><a href="<s:property value="newsurl"/>">阅读原文</a></span> <span style="float:right"><a href="search.action?searchKey=<s:property value="name"/>">延伸阅读</a></span></p>
 
-						</div>
-						
+						</div>	
 					</div>
-				</div>
+					
+					<%
+					@SuppressWarnings("unchecked")
+					List<String> reList = (ArrayList<String>)request.getAttribute("reviewList");
+					@SuppressWarnings("unchecked")
+					List<String> auList = (ArrayList<String>)request.getAttribute("authorList");
+					int e = reList.size();
+					for(int i = 0; i < e; i++ ){
+					  String author = auList.get(i);
+					  String review = reList.get(i);
+					%>
+					<div class="box">
+						<h2><%=author%>:</h2>
+						<p><br>
+						<%=review %>
+						</p>
+					</div>
+					<hr class="line">
+					<%
+					}
+					%>		
+						
+					<div class="box">
+					<% 
+					String u = (String)request.getAttribute("url");
+					request.setAttribute("reviewurl", u); 
+					%>
+					<%=u %>
+					评论区：
+						<s:form action="addReview" method="post" cssClass="box" theme="css_xhtml" >	
+							 <div class="info">
+							 <s:textarea name="review" type="text" aria-label="评论" placeholder="评论"/>
+							 </div>
+							 <div class="info">
+							 <s:submit value="提交" />
+							 </div>
+						</s:form>
+					
+					</div>
+						
+				</div>					
 			</div>
 		</div>
 	</div>
@@ -157,6 +196,8 @@
 
     });
     </script>
+	
+	
 	
 </body>
 </html>

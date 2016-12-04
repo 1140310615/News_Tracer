@@ -26,7 +26,7 @@ public class newsDao
 */
       String URL ="jdbc:mysql://localhost:3306/news?characterEncoding=utf8";
       Class.forName("com.mysql.jdbc.Driver");
-      con = DriverManager.getConnection(URL, "root", "123456");
+      con = DriverManager.getConnection(URL, "root", "1234");
 
 		}
 		catch(Exception ex)
@@ -76,6 +76,140 @@ public class newsDao
       catch (SQLException e){
         e.printStackTrace();
       }
+    }
+	}
+	
+	 public  ArrayList<String> selectLocalReview(String url)
+   {
+     String sql = "select content from newsreview where url=?";
+     ArrayList<String> r = new ArrayList<String>();
+     try
+     {
+       PreparedStatement pre = con.prepareStatement(sql);
+       pre.setString(1, url);
+       ResultSet rs = pre.executeQuery();
+       while(rs.next())
+       {
+         r.add(rs.getString(1));
+       }
+       if (rs != null)
+         rs.close();
+       if (pre != null)
+         pre.close();
+     }
+       catch (Exception ex)
+       {
+         ex.printStackTrace();
+       } 
+     return r;
+   }
+	
+   public  ArrayList<String> selectLocalAuthor(String url)
+   {
+     String sql = "select author from newsreview where url=?";
+     ArrayList<String> r = new ArrayList<String>();
+     try
+     {
+       PreparedStatement pre = con.prepareStatement(sql);
+       pre.setString(1, url);
+       ResultSet rs = pre.executeQuery();
+       while(rs.next())
+       {
+         r.add(rs.getString(1));
+       }
+       if (rs != null)
+         rs.close();
+       if (pre != null)
+         pre.close();
+     }
+       catch (Exception ex)
+       {
+         ex.printStackTrace();
+       } 
+     return r;
+   }
+	 
+	 public  ArrayList<newsVo> selectLocalNews(String url)
+	  {
+	    String sql = "select body from newslocal where url=?";
+	    String sql1 = "select * from newslist where url=?";
+	    newsVo vo = new newsVo();
+	    try
+	    {
+	      PreparedStatement pre = con.prepareStatement(sql);
+	      PreparedStatement pre1 = con.prepareStatement(sql1);
+	      pre.setString(1, url);
+	      pre1.setString(1, url);
+	      ResultSet rs = pre.executeQuery();
+	      ResultSet rs1 = pre1.executeQuery();
+	      while(rs.next() && rs1.next())
+	      {
+	        vo.setUrl(rs.getString(1));//body
+	        
+	        vo.setName(rs1.getString(2));
+	        vo.setKeywords(rs1.getString(3));
+	        vo.setType(rs1.getString(4));
+	        vo.setDate(rs1.getDate(5));
+	        vo.setCount(rs1.getInt(6));
+	      }
+	      if (rs != null)
+	        rs.close();
+	      if (pre != null)
+	        pre.close();
+	      if (rs1 != null)
+          rs1.close();
+        if (pre1 != null)
+          pre1.close();
+  	  }
+  	    catch (Exception ex)
+  	    {
+  	      ex.printStackTrace();
+  	    }
+  	    
+  	    ArrayList<newsVo> newsList = new ArrayList<newsVo>();
+  	    newsList.add(vo);
+  	    return newsList;
+  	}
+  	
+	public boolean insertLocalNews(String Url, String Body){
+	  if (isExist(Url)){
+      return false;
+    }
+    String  sql = "insert into newslocal values(?,?)";
+    try
+    {
+      int count = 0;
+      PreparedStatement pre = con.prepareStatement(sql);
+      pre.setString(1, Url);         //鎻掑叆閾炬帴
+      pre.setString(2, Body);
+      count = pre.executeUpdate();
+      pre.close();
+      return count>0?true:false;
+    }
+    catch(Exception ex)
+    {
+      ex.printStackTrace();
+      return false;
+    }
+	}
+	
+	public boolean insertReview(String url, String user, String review){
+	  String  sql = "insert into newsreview values(?,?,?)";
+	  try
+    {
+      int count = 0;
+      PreparedStatement pre = con.prepareStatement(sql);
+      pre.setString(1, url);         //鎻掑叆閾炬帴
+      pre.setString(3, user);
+      pre.setString(2, review);
+      count = pre.executeUpdate();
+      pre.close();
+      return count>0?true:false;
+    }
+    catch(Exception ex)
+    {
+      ex.printStackTrace();
+      return false;
     }
 	}
 	

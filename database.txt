@@ -10,3 +10,21 @@ CREATE TABLE IF NOT EXISTS `newsList` (
   `count` int(11) DEFAULT '0',
   PRIMARY KEY (`url`)
 )
+
+create table newsreview (
+  url varchar(100) not null,
+  content varchar(500) not null,
+  author varchar(30) not null
+)
+
+create table newslocal (
+  url varchar(100) not null,
+  body varchar(500) not null
+)
+
+CREATE TABLE `userlist` (
+  `userName` varchar(30) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  `likes` varchar(50) DEFAULT NULL,
+  num int(11) DEFAULT '0'
+) 
