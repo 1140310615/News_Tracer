@@ -92,7 +92,7 @@
 	<div id="page-content" class="archive-page container">
 		<div class="">
 			<div class="row">
-				<div id="main-content" class="col-md-8"  name="mainFrame">
+				<div id="main-content" class="col-md-8"  name="mainFrame" style="position:relative;width:70%;left:15%;">
 					<%
 					@SuppressWarnings("unchecked")
 					List<newsVo> textList = (ArrayList<newsVo>)request.getAttribute("list");

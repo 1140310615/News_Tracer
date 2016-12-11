@@ -142,6 +142,11 @@
 					  String author = auList.get(i);
 					  String review = reList.get(i);
 					%>
+					<br>
+					</div>
+					</div>
+					<div class="row">
+					<div class="col-md-8" style="position:relative;width:85%;left:7%;">
 					<div class="box">
 						<h2><%=author%>:</h2>
 						<p><br>
@@ -153,28 +158,23 @@
 					}
 					%>		
 						
-					<div class="box">
+					<div class="box col-md-12">
 					<% 
 					String u = (String)request.getAttribute("url");
 					request.setAttribute("reviewurl", u); 
 					%>
 					<%=u %>
 					评论区：
-						<s:form action="addReview" method="post" cssClass="box" theme="css_xhtml" >	
-							 <div class="info">
-							 <s:textarea name="review" type="text" aria-label="评论" placeholder="评论"/>
-							 </div>
-							 <div class="info">
-							 <s:submit value="提交" />
-							 </div>
-						</s:form>
-					
+						<form style="padding:10px" class="col-md-12" action="addReview" method="post" target="">	
+							 <s:textarea style="width:100%" name="review" type="text" aria-label="评论" placeholder="评论"/>
+							 <s:submit style="margin-top:10px" value="提交" />
+						</form>
 					</div>
-						
+						</div>
 				</div>					
-			</div>
+			
 		</div>
-	</div>
+	
 
 	<footer>
 		<div class="copy-right">
