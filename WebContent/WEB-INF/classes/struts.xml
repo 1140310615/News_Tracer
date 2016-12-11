@@ -11,6 +11,7 @@
         </action>       
         <action name="newsType" class="com.hyc.action.hycNewsAction" method="newsType">
         	<result name="success">/index.jsp</result>
+        	<result name="user">/usernews.jsp</result>
         </action>
         <action name="showBody" class="com.hyc.action.hycNewsAction" method="showBody">
         	<result name="success">/main.jsp</result>

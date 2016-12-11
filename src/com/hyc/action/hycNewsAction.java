@@ -128,12 +128,15 @@ public class hycNewsAction extends ActionSupport
 
 	public String newsType()
 	{
+	  boolean l = false;
 		newsDao dao = new newsDao();
 		dao.openConnection();
 		list = dao.selectByType(type);
+		if (type.equals("me")) l = true;
 		//list = dao.selectAll();
 		list = new newsProcess().sortByDate(list);
 		dao.closeConnection();
+		if (l) return "user";
 		return "success";
 	}
 	
@@ -222,7 +225,8 @@ public class hycNewsAction extends ActionSupport
 			{
 				continue;
 			}
-			list.add(nList.get(i));
+			if (!nList.get(i).getType().equals("me"))
+			  list.add(nList.get(i));
 		}
 		list = new newsProcess().newsSort(list);
 		recomList = list;

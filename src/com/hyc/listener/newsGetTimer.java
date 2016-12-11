@@ -47,8 +47,8 @@ class newsGet
 	public newsGet()
 	{
 		Calendar calendar = Calendar.getInstance();
-		calendar.set(Calendar.HOUR_OF_DAY, 11);
-		calendar.set(Calendar.MINUTE,26);
+		calendar.set(Calendar.HOUR_OF_DAY, 18);
+		calendar.set(Calendar.MINUTE,37);
 		calendar.set(Calendar.SECOND,00);
 		Date t = calendar.getTime();    //得出执行任务的时间
 		Timer myTimer = new Timer();
