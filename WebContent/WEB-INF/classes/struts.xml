@@ -48,13 +48,13 @@
     	<action name="userCheck" class="com.yyl.user.UserCheckAction" method="userCheck"/>
     	
     	<action name="addNews" class="com.yyl.user.User" method="addNews">
-    		<result name="success">/newsaddsuccess.jsp</result>
+    		<result name="success">/skiptoTypeme.jsp</result>
     		<result name="error">/usernotexist.jsp</result>
     		<result name="input">/addNews.jsp</result>
     	</action>
     	
     	<action name="addReview" class="com.hyc.action.hycNewsAction" method="addReview">
-    		<result name="success">/newsaddsuccess.jsp</result>
+    		<result name="success">/main.jsp</result>
     		<result name="error">/usernotexist.jsp</result>
     		<result name="input">/main.jsp</result>
     	</action>

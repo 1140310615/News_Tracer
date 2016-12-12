@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//WebContent/usernotexist.jsp=UTF-8
 encoding//src/com/hyc/action/hycNewsAction.java=UTF-8
 encoding//src/com/hyc/news/newsDao.java=UTF-8
 encoding//src/com/hyc/webInfo/crawler.java=UTF-8

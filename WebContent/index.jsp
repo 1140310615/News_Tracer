@@ -46,8 +46,10 @@
 
 <body>
 
-<a id="user0" href="register.jsp">注册</a>&nbsp;&nbsp;
-<a id="user1" href="login.jsp">登录</a>&nbsp;&nbsp;
+
+<a id="user0" href="register.jsp">注册&nbsp;&nbsp;</a>
+<a id="user1" href="login.jsp">登录&nbsp;</a>&nbsp;
+<a id="U"></a>
 <a>${sessionScope.userName}</a>&nbsp;&nbsp;
 
 <a id="user2" href='<s:url action="user_logout"/>'>登出</a>&nbsp;&nbsp;
@@ -56,21 +58,19 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-	 var user = <%=session.getAttribute("userName")%>;
-    if(user!=null){
-    	document.getElementById("user0").innerHTML="欢迎回来!";
-    	document.getElementById("user1").innerHTML="";
-    	user0.href = "javascript:void(0);";
-    	user0.setAttribute("disabled", "disabled");
-    	user1.href = "javascript:void(0);";
-    	user1.setAttribute("disabled", "disabled");
+	 var user = '<%=session.getAttribute("userName")%>';
+    if(user!='null'){
+    	document.getElementById("U").innerHTML="欢迎回来！";
+    	user0.setAttribute("hidden", "true");
+    	user1.setAttribute("hidden", "true");
     }
     else{
-    	document.getElementById("user2").innerHTML="";
-    	document.getElementById("user3").innerHTML="";
+    	user2.setAttribute("hidden", "true");
+    	user3.setAttribute("hidden", "true");
     }
 });
 </script>
+
 
 <!-- a href='<s:url action="userList" method="list"/>'>用户列表</a>&nbsp;&nbsp;-->
 <header>

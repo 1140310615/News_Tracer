@@ -141,7 +141,7 @@ public class hycNewsAction extends ActionSupport
 	}
 	
 	public String addReview(){
-	  System.out.println("here"+url);
+	  //System.out.println("here"+url);
 	  if (User.isLogin()){
   	  newsDao dao = new newsDao();
   	  ActionContext context = ActionContext.getContext();
@@ -149,6 +149,7 @@ public class hycNewsAction extends ActionSupport
       dao.openConnection();
       dao.insertReview(url,session.get("userName").toString(),review);
       dao.closeConnection();
+  	  showBody();
   	  return "success";
 	  }else return "error";
 	}
